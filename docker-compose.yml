@@ -1,0 +1,13 @@
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL}
+    container_name: vivuviet-fe
+    restart: always
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
