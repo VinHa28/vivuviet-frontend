@@ -10,12 +10,13 @@ import {
   List,
   SlidersHorizontal,
 } from "lucide-react";
-import { offers, provinces } from "@/mock/offers";
+import { provinces } from "@/mock/offers";
 import Button from "@/components/ui/Button";
 import OfferCard from "@/components/offers/OfferCard";
 import OfferFilters from "@/components/offers/OfferFilters";
 import PartnersRow from "@/components/offers/PartnersRow";
 import FloatingChat from "../ui/FloatingChat";
+import { getAllOffers } from "@/services/offerService";
 
 export default function OffersSection({ initialFilters = null }) {
   const ITEMS_PER_PAGE = 6;
@@ -28,6 +29,8 @@ export default function OffersSection({ initialFilters = null }) {
     minPrice: initialFilters?.minPrice || 0,
     maxPrice: initialFilters?.maxPrice || 999999999,
   });
+
+  const [offers, setOffers] = useState([]);
 
   const [sortBy, setSortBy] = useState("featured");
   const [showSortMenu, setShowSortMenu] = useState(false);
@@ -96,7 +99,7 @@ export default function OffersSection({ initialFilters = null }) {
     }
 
     return result;
-  }, [filters, sortBy]);
+  }, [offers, filters, sortBy]);
 
   const handleFilterChange = (newFilters) => {
     setFilters((prev) => ({ ...prev, ...newFilters }));
@@ -142,6 +145,19 @@ export default function OffersSection({ initialFilters = null }) {
     { id: 5, name: "Local Guides", logo: "/icons/Vector.svg" },
   ];
 
+  useEffect(() => {
+    const fetchOffers = async () => {
+      try {
+        const data = await getAllOffers();
+        setOffers(data);
+      } catch (err) {
+        console.error("Failed to fetch offers:", err);
+      }
+    };
+
+    fetchOffers();
+  }, []);
+
   return (
     <section className="mt-[60px] pb-[80px]">
       <FloatingChat />
@@ -170,17 +186,26 @@ export default function OffersSection({ initialFilters = null }) {
         {/* Right visual */}
         <div className="relative h-[320px]">
           <div className="absolute top-0 right-0 w-[220px] h-[280px] rounded-2xl overflow-hidden">
-            <Image src="/images/ha_long.jpg" fill className="object-cover" alt="" />
+            <Image
+              src="/images/ha_long.jpg"
+              fill
+              className="object-cover"
+              alt=""
+            />
           </div>
 
           <div className="absolute bottom-0 left-[40px] w-[180px] h-[220px] rounded-2xl overflow-hidden border border-white shadow-md">
-            <Image src="/images/hoi_an.jpg" fill className="object-cover" alt="" />
+            <Image
+              src="/images/hoi_an.jpg"
+              fill
+              className="object-cover"
+              alt=""
+            />
           </div>
 
           <div className="absolute left-0 top-[40px] w-[120px] h-[120px] rounded-full bg-secondary/10" />
         </div>
       </div>
-
 
       {/* Partners Row (moved to immediately after header) with chevron controls */}
       <PartnersRow partners={partners} />
@@ -253,8 +278,6 @@ export default function OffersSection({ initialFilters = null }) {
                 ))}
               </div>
 
-
-
               {/* Pagination Controls */}
               {totalPages > 1 && (
                 <div className="flex justify-center items-center gap-2 mt-12.5">
@@ -286,10 +309,11 @@ export default function OffersSection({ initialFilters = null }) {
                               setCurrentPage(pageNumber);
                               window.scrollTo({ top: 0, behavior: "smooth" });
                             }}
-                            className={`w-10 h-10 rounded-sm border font-bold transition ${currentPage === pageNumber
-                              ? "bg-primary text-white border-primary"
-                              : "border-primary text-primary bg-white"
-                              }`}
+                            className={`w-10 h-10 rounded-sm border font-bold transition ${
+                              currentPage === pageNumber
+                                ? "bg-primary text-white border-primary"
+                                : "border-primary text-primary bg-white"
+                            }`}
                           >
                             {pageNumber}
                           </button>
@@ -316,10 +340,11 @@ export default function OffersSection({ initialFilters = null }) {
                                     behavior: "smooth",
                                   });
                                 }}
-                                className={`w-10 h-10 rounded-sm border font-bold transition ${currentPage === pageNumber
-                                  ? "bg-primary text-white border-primary"
-                                  : "border-primary text-primary bg-white"
-                                  }`}
+                                className={`w-10 h-10 rounded-sm border font-bold transition ${
+                                  currentPage === pageNumber
+                                    ? "bg-primary text-white border-primary"
+                                    : "border-primary text-primary bg-white"
+                                }`}
                               >
                                 {pageNumber}
                               </button>
@@ -391,6 +416,5 @@ export default function OffersSection({ initialFilters = null }) {
         </div>
       </div>
     </section>
-    
   );
 }

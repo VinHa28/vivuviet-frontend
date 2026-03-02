@@ -49,7 +49,6 @@ export default function DestinationPage() {
       </div>
     );
   }
-  console.log(currentPost.gallery);
   return (
     <>
       <HeroBanner

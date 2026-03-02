@@ -1,5 +1,4 @@
 export default function Post({ postContent }) {
-  console.log(postContent);
   return (
     <section className="w-full py-4 px-4">
       <article
