@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import Logo from "@/components/ui/Logo";
 import {
   Facebook,
@@ -12,7 +12,6 @@ import {
 import Link from "next/link";
 import React from "react";
 import { useAuth } from "@/contexts/AuthContext";
-
 
 export default function Footer() {
   const { setShowLoginModal } = useAuth();
@@ -81,14 +80,6 @@ export default function Footer() {
             Quick Links
           </h4>
           <ul className="flex flex-col gap-4 text-text-secondary font-primary">
-            <li>
-              <Link
-                href="/gallery"
-                className="hover:text-primary transition-colors"
-              >
-                Gallery
-              </Link>
-            </li>
             <li>
               <button
                 onClick={() => setShowLoginModal(true)}
