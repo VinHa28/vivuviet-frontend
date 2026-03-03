@@ -8,7 +8,7 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        //  giới hạn pathname: "/vinhhv28/**" nếu chỉ muốn dùng ảnh từ account của mình
+        // giới hạn pathname: "/vinhhv28/**" nếu chỉ muốn dùng ảnh từ account của mình
         pathname: "/**",
       },
       {
