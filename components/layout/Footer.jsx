@@ -65,7 +65,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/tours"
+                href="/offers"
                 className="hover:text-primary transition-colors"
               >
                 Tours
@@ -82,19 +82,12 @@ export default function Footer() {
           <ul className="flex flex-col gap-4 text-text-secondary font-primary">
             <li>
               <button
+                type="button"
                 onClick={() => setShowLoginModal(true)}
-                className="hover:text-primary transition-colors"
+                className="hover:text-primary transition-colors cursor-pointer"
               >
                 Login
               </button>
-            </li>
-            <li>
-              <Link
-                href="/register"
-                className="hover:text-primary transition-colors"
-              >
-                Register
-              </Link>
             </li>
           </ul>
         </div>
@@ -108,21 +101,21 @@ export default function Footer() {
             <li className="flex items-center gap-3">
               <MapPin size={20} className="text-text-primary" />
               <span>
-                <strong className="text-text-primary">Address:</strong> Viet Nam
+                <strong className="text-text-primary">Address:</strong> Hà Nội,
+                Việt Nam
               </span>
             </li>
             <li className="flex items-center gap-3 ">
               <Mail size={20} className="text-text-primary" />
               <span>
                 <strong className="text-text-primary">Email:</strong>{" "}
-                vivuviet@gmail.com
+                cheers.vivuviet@gmail.com
               </span>
             </li>
             <li className="flex items-center gap-3">
               <Phone size={20} className="text-text-primary" />
               <span>
-                <strong className="text-text-primary">Phone:</strong>{" "}
-                363633336666
+                <strong className="text-text-primary">Phone:</strong> 0981228204
               </span>
             </li>
           </ul>

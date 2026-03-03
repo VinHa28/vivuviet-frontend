@@ -7,8 +7,8 @@ import React, { useState } from "react";
 export default function ExploreSection() {
   const [activeProvince, setActiveProvince] = useState(null);
   return (
-    <section className="mt-17.5">
-      <div className="grid grid-cols-2 ">
+    <section className="pt-[160px] mt-[-90px]" id="explore">
+      <div className="grid grid-cols-2">
         <div>
           <VietnamMaps setActiveProvince={setActiveProvince} />
         </div>

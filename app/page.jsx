@@ -32,7 +32,7 @@ export default function Home() {
             </p>
 
             <div className="flex items-center gap-[14px] mt-[20px]">
-              <Link href="/destinations/ha-long">
+              <Link href="#explore">
                 <Button>Khám phá ngay</Button>
               </Link>
               <Link href="/offers">
