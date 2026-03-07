@@ -6,6 +6,8 @@ import LoginModal from "@/components/auth/LoginModal";
 import { AuthProvider } from "@/contexts/AuthContext";
 import FloatingChat from "@/components/ui/FloatingChat";
 import { Toaster } from "react-hot-toast";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -34,6 +36,16 @@ export default function RootLayout({ children }) {
           ${islandMoments.variable}
         `}
       >
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-E8KL2FNLM1" />
+        <Script id="google-analytics">
+          {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-E8KL2FNLM1');
+    `}
+        </Script>
         <AuthProvider>
           <Header />
           <main className="pt-[90px] max-w-[1170px] mx-auto">{children}</main>
@@ -43,6 +55,7 @@ export default function RootLayout({ children }) {
           <Toaster position="top-right" reverseOrder={false} />
         </AuthProvider>
       </body>
+      <GoogleAnalytics gaId="G-E8KL2FNLM1" />
     </html>
   );
 }
