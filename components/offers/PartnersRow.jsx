@@ -22,7 +22,7 @@ export default function PartnersRow() {
       const data = await getAllPartnerPremium();
       setPartners(data);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -123,20 +123,23 @@ export default function PartnersRow() {
 
           {partners.map((p) => (
             <a
-              href={`${p.website}`}
+              href={p.website}
               target="_blank"
+              rel="noopener noreferrer"
               key={p._id}
-              className=" min-w-[120px] md:min-w-[150px] shrink-0 bg-white border border-gray-50 rounded-xl p-4 flex flex-col items-center gap-2 shadow-sm"
+              className="min-w-[120px] md:min-w-[150px] shrink-0 bg-white border border-gray-50 rounded-xl p-4 flex flex-col items-center gap-2 shadow-sm"
             >
               <div className="w-14 h-14 md:w-16 md:h-16 relative">
                 <Image
                   src={p.logo}
                   alt={p.businessName}
                   fill
+                  sizes="64px"
                   className="object-contain"
                   draggable={false}
                 />
               </div>
+
               <div className="text-[11px] md:text-xs text-center text-gray-500 font-medium uppercase">
                 {p.businessName}
               </div>

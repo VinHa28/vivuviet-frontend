@@ -7,6 +7,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState, useRef } from "react";
 import { logout } from "@/services/authService";
 import { useAuth } from "@/contexts/AuthContext";
+import Image from "next/image";
 const navItems = [
   {
     label: "Ưu đãi du lịch",
@@ -128,10 +129,12 @@ export default function Header() {
                 </>
               ) : (
                 <>
-                  <img
+                  <Image
                     src={"/images/menu.svg"}
                     alt="Menu"
                     className="w-5 h-5"
+                    width={20}
+                    height={20}
                   />
                 </>
               )}

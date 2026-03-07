@@ -5,7 +5,6 @@ import Link from "next/link";
 import ServiceSection from "@/components/home/ServiceSection";
 import EventsSection from "@/components/home/EventsSection";
 import ExploreSection from "@/components/home/ExploreSection";
-import FloatingChat from "@/components/ui/FloatingChat";
 
 export default function Home() {
   return (
@@ -18,7 +17,7 @@ export default function Home() {
               Welcome to Vietnam
             </Button>
 
-            <h1 className="mt-[30px] text-[36px] text-text-primary leading-9 font-semibold">
+            <h1 className="mt-7.5 text-[36px] text-text-primary leading-9 font-semibold">
               Hãy để{" "}
               <span className="font-medium font-script-1 text-[54px] text-secondary">
                 VivuViet
@@ -42,35 +41,41 @@ export default function Home() {
           </div>
 
           <div className="flex justify-between w-[50%] relative">
-            <div className="relative w-[166px] h-[350px] border-2 border-secondary">
+            <div className="relative w-41.5 h-87.5 border-2 border-secondary">
               <Image
                 src="/images/herro_1.jpg"
                 alt="Vinh-Ha-Long"
                 fill
+                sizes="(max-width: 768px) 100vw, 400px"
                 className="object-cover"
               />
             </div>
-            <div className="relative w-[166px] h-[350px] border-2 border-secondary mt-[38px]">
+            <div className="relative w-41.5 h-87.5 border-2 border-secondary mt-9.5">
               <Image
                 src="/images/herro_2.jpg"
                 alt="Vinh-Ha-Long"
                 fill
+                sizes="(max-width: 768px) 100vw, 400px"
                 className="object-cover"
               />
             </div>
-            <div className="relative w-[166px] h-[350px] border-2 border-secondary mt-[76px]">
+            <div className="relative w-41.5 h-87.5 border-2 border-secondary mt-19">
               <Image
                 src="/images/herro_3.jpg"
                 alt="Vinh-Ha-Long"
                 fill
+                sizes="(max-width: 768px) 100vw, 400px"
                 className="object-cover"
               />
             </div>
-            <img
-              className="absolute left-[-110px] top-[30px]"
-              src="/icons/plane_vector.svg"
-              alt="plane icon"
-            />
+            <div className="absolute -left-27.5 top-7.5 w-144.25 h-32.5">
+              <Image
+                src="/icons/plane_vector.svg"
+                alt="plane icon"
+                fill
+                className="object-contain" 
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -167,6 +172,7 @@ function DestinationCard({ name, sub, img, slug, className = "" }) {
         src={img}
         alt={name}
         fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover transition-transform duration-700 group-hover:scale-110"
       />
 

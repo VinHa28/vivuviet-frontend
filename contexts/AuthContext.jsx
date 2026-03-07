@@ -5,60 +5,67 @@ import { getCurrentUser, updateUserInStorage } from "@/services/authService";
 import axiosClient from "@/lib/axios";
 
 const AuthContext = createContext({
-    user: null,
-    setUser: () => { },
-    loading: true,
-    refreshUser: () => { },
-    showLoginModal: false,
-    setShowLoginModal: () => { },
+  user: null,
+  setUser: () => {},
+  loading: true,
+  refreshUser: () => {},
+  showLoginModal: false,
+  setShowLoginModal: () => {},
 });
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [showLoginModal, setShowLoginModal] = useState(false);
+  const [user, setUser] = useState(() => getCurrentUser());
+  const [loading, setLoading] = useState(true);
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
-    const refreshUser = async () => {
-        try {
-            // Try to get fresh data from server
-            const response = await axiosClient.get("/auth/me");
-            if (response.user) {
-                setUser(response.user);
-                updateUserInStorage(response.user);
-                return;
-            }
-        } catch (error) {
-            console.log("Failed to refresh from server, using localStorage");
-        }
+  const refreshUser = async () => {
+    try {
+      const response = await axiosClient.get("/auth/me");
 
-        // Fallback to localStorage
-        const currentUser = getCurrentUser();
-        setUser(currentUser);
+      if (response.user) {
+        setUser(response.user);
+        updateUserInStorage(response.user);
+        return;
+      }
+    } catch (error) {
+      console.error("Failed to refresh from server, using localStorage");
+    }
+
+    const currentUser = getCurrentUser();
+    setUser(currentUser);
+  };
+
+  useEffect(() => {
+    const init = async () => {
+      if (user) {
+        await refreshUser();
+      }
+      setLoading(false);
     };
 
-    useEffect(() => {
-        // Load user from localStorage on mount, then try to refresh from server
-        const currentUser = getCurrentUser();
-        setUser(currentUser);
-        setLoading(false);
+    init();
+  }, []);
 
-        // Silently refresh from server if user exists
-        if (currentUser) {
-            refreshUser();
-        }
-    }, []);
-
-    return (
-        <AuthContext.Provider value={{ user, setUser, loading, refreshUser, showLoginModal, setShowLoginModal }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  return (
+    <AuthContext.Provider
+      value={{
+        user,
+        setUser,
+        loading,
+        refreshUser,
+        showLoginModal,
+        setShowLoginModal,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export const useAuth = () => {
-    const context = useContext(AuthContext);
-    if (!context) {
-        throw new Error("useAuth must be used within AuthProvider");
-    }
-    return context;
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within AuthProvider");
+  }
+  return context;
 };

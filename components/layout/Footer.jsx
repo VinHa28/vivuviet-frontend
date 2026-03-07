@@ -18,13 +18,13 @@ export default function Footer() {
 
   return (
     <footer className="w-full bg-white pt-16 pb-10 ">
-      <div className="max-w-[1170px] mx-auto  grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-292.5 mx-auto  grid grid-cols-1 md:grid-cols-4 gap-10">
         <div className="flex flex-col">
           <Logo />
           <p className="text-text-secondary text-[16px] font-primary mt-1.5">
             © 2025 VivuViet — Cùng bạn khám phá Việt Nam
           </p>
-          <div className="flex gap-4 mt-[45px]">
+          <div className="flex gap-4 mt-11.25">
             <div className="p-2 bg-secondary text-white rounded-full cursor-pointer hover:bg-primary transition-all duration-250">
               <Youtube size={20} />
             </div>

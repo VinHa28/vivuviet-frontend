@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import LoginModal from "@/components/auth/LoginModal";
 import { AuthProvider } from "@/contexts/AuthContext";
 import FloatingChat from "@/components/ui/FloatingChat";
+import { Toaster } from "react-hot-toast";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -39,6 +40,7 @@ export default function RootLayout({ children }) {
           <FloatingChat />
           <Footer />
           <LoginModal />
+          <Toaster position="top-right" reverseOrder={false} />
         </AuthProvider>
       </body>
     </html>

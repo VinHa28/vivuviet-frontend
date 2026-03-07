@@ -143,8 +143,8 @@ export default function OfferFilters({
                     <Image
                       src={type.icon}
                       alt={type.label}
-                      width={18}
-                      height={18}
+                      fill
+                      className="object-contain"
                       style={{
                         filter:
                           selectedType === type.value

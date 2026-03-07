@@ -7,6 +7,7 @@ import { useState } from "react";
 import PartnerRegistrationModal from "@/components/auth/PartnerRegistrationModal";
 import { useAuth } from "@/contexts/AuthContext";
 import FloatingChat from "@/components/ui/FloatingChat";
+import { plans } from "@/mock/constants";
 
 export default function About() {
   const { user } = useAuth();
@@ -22,66 +23,13 @@ export default function About() {
     setIsModalOpen(true);
   };
 
-  const plans = [
-    {
-      name: "Gói 1 – Đối tác Cơ Bản",
-      price: "Miễn phí",
-      tier: "basic",
-      description:
-        "Phù hợp với: quán ăn nhỏ, homestay, dịch vụ địa phương quy mô nhỏ.",
-      features: [
-        { text: "Tạo hồ sơ doanh nghiệp trên VivuViet", status: true },
-        { text: "Đề xuất tour nhằm hỗ trợ quảng bá", status: true },
-        { text: "Gắn link Website / Fanpage Facebook", status: true },
-        { text: "Điều hướng khách về kênh riêng", status: true },
-        { text: "Marketing nội dung hệ thống", status: false },
-        { text: "Tài khoản quản trị bài viết", status: false },
-      ],
-      cta: "Bắt đầu ngay",
-      popular: false,
-    },
-    {
-      name: "Gói 2 – Đối tác Nâng Cao",
-      price: "Liên hệ",
-      tier: "standard",
-      description:
-        "Phù hợp với: nhà hàng, khách sạn, đơn vị tour muốn quảng bá mạnh.",
-      features: [
-        { text: "Bao gồm toàn bộ quyền lợi Gói 1", status: true },
-        { text: "Xuất hiện trong các bài viết địa điểm", status: true },
-        { text: "Đề xuất nổi bật trong bài tổng hợp", status: true },
-        { text: "Ưu tiên hiển thị tại địa phương", status: true },
-        { text: "Tự quản lý cập nhật thông tin", status: false },
-        { text: "Tài khoản quản trị bài viết", status: false },
-      ],
-      cta: "Đăng ký ngay",
-      popular: false,
-    },
-    {
-      name: "Gói 3 – Đối tác Chiến Lược",
-      price: "79.000đ/tháng",
-      tier: "premium",
-      description:
-        "Phù hợp với: chuỗi khách sạn, công ty tour, doanh nghiệp lâu dài.",
-      features: [
-        { text: "Bao gồm toàn bộ quyền lợi Gói 2", status: true },
-        { text: "Cấp tài khoản quản trị hệ thống", status: true },
-        { text: "Tự tạo và cập nhật bài giới thiệu", status: true },
-        { text: "Quyền đề xuất bài viết lên trang chủ", status: true },
-        { text: "Gắn sản phẩm/dịch vụ trực tiếp", status: true },
-        { text: "Hỗ trợ kiểm duyệt ưu tiên", status: true },
-      ],
-      cta: "Đăng ký ngay",
-      popular: true,
-    },
-  ];
   return (
     <main className="bg-white overflow-hidden">
       <FloatingChat />
 
       {/* HERO – Statement + Images */}
-      <section className="min-h-[90vh] flex items-center px-[80px]">
-        <div className="grid grid-cols-2 gap-[80px] items-center max-w-[1400px] mx-auto">
+      <section className="min-h-[90vh] flex items-center px-20">
+        <div className="grid grid-cols-2 gap-20 items-center max-w-350 mx-auto">
           {/* Text */}
           <div>
             <h1 className="text-[50px] leading-tight font-semibold text-text-primary">
@@ -105,6 +53,7 @@ export default function About() {
             <div className="absolute top-0 left-0 w-[65%] h-[70%] rounded-3xl overflow-hidden shadow-lg">
               <Image
                 src="/images/about_1.jpg"
+                sizes="(max-width: 768px) 100vw, 50vw"
                 alt="Vietnam nature"
                 fill
                 className="object-cover"
@@ -116,6 +65,7 @@ export default function About() {
                 src="/images/about_2.jpg"
                 alt="Vietnam culture"
                 fill
+                sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -124,8 +74,8 @@ export default function About() {
       </section>
 
       {/* PARTNER OFFERS SECTION - Thay thế Image Strip */}
-      <section className="py-[120px]">
-        <div className="max-w-[1400px] mx-auto px-[80px]">
+      <section className="py-30">
+        <div className="max-w-350 mx-auto px-20">
           <div className="mb-12">
             <h2 className="text-[42px] font-semibold text-text-primary">
               Ưu đãi đối tác VivuViet
@@ -228,8 +178,8 @@ export default function About() {
       />
 
       {/* STORY – Text + Tall Image */}
-      <section className="px-[80px] pb-[140px]">
-        <div className="grid grid-cols-2 gap-[80px] max-w-[1200px] mx-auto items-center">
+      <section className="px-20 pb-35">
+        <div className="grid grid-cols-2 gap-20 max-w-300 mx-auto items-center">
           <div>
             <p className="text-[18px] text-text-secondary leading-loose">
               Việt Nam không chỉ là những danh lam thắng cảnh.
@@ -249,6 +199,7 @@ export default function About() {
               src="/images/about_story.jpg"
               alt="Vietnam daily life"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
             />
           </div>

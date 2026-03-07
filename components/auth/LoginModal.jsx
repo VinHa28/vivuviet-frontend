@@ -12,7 +12,7 @@ export default function LoginModal() {
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 z-[9999] flex items-center justify-center p-4 backdrop-blur-sm"
+      className="fixed inset-0 bg-black/50 z-9999 flex items-center justify-center p-4 backdrop-blur-sm"
       onClick={() => setShowLoginModal(false)} // Bấm ra ngoài để đóng
     >
       <div

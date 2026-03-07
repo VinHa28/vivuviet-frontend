@@ -136,7 +136,6 @@ export default function OffersSection({ initialFilters = null }) {
 
   const currentSort = sortOptions.find((opt) => opt.value === sortBy);
 
-  // Example partners list (logo path should point to public/ folder)
   const partners = [
     { id: 1, name: "Vivu Travel", logo: "/icons/tabler_beach.svg" },
     { id: 2, name: "Ocean Hotels", logo: "/icons/mingcute_hotel-line.svg" },
@@ -159,7 +158,7 @@ export default function OffersSection({ initialFilters = null }) {
   }, []);
 
   return (
-    <section className="mt-[60px] pb-[80px]">
+    <section className="mt-15 pb-20">
       <FloatingChat />
       {/* Header – Editorial Split */}
       <div className="max-w-[1200px] mx-auto px-[40px] mb-[80px] grid grid-cols-2 gap-[60px] items-center">
@@ -207,11 +206,10 @@ export default function OffersSection({ initialFilters = null }) {
         </div>
       </div>
 
-      {/* Partners Row (moved to immediately after header) with chevron controls */}
       <PartnersRow partners={partners} />
 
       {/* Main Content */}
-      <div className="flex gap-[30px]">
+      <div className="flex gap-7.5">
         {/* Sidebar Filters */}
         <OfferFilters
           onFilterChange={handleFilterChange}
@@ -257,22 +255,12 @@ export default function OffersSection({ initialFilters = null }) {
                 </div>
               )}
             </div>
-
-            {/* partners removed from top-bar; rendered below header */}
           </div>
 
           {/* Offers Grid */}
           {filteredOffers.length > 0 ? (
             <>
-              <div
-                className="
-    grid
-    grid-cols-1
-    sm:grid-cols-2
-    lg:grid-cols-3
-    gap-8
-  "
-              >
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {paginatedOffers.map((offer) => (
                   <OfferCard key={offer._id} offer={offer} />
                 ))}

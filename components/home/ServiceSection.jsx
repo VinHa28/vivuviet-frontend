@@ -173,19 +173,18 @@ const ServiceSection = () => {
                   <Image
                     src={tab.icon}
                     alt={tab.label}
-                    width={20}
-                    height={20}
+                    fill
+                    className={`object-contain ${
+                      activeTab !== tab.id
+                        ? "grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:brightness-0"
+                        : ""
+                    }`}
                     style={{
                       filter:
                         activeTab === tab.id
                           ? "invert(26%) sepia(76%) saturate(1831%) hue-rotate(347deg) brightness(99%) contrast(101%)"
                           : "none",
                     }}
-                    className={`${
-                      activeTab !== tab.id
-                        ? "grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:brightness-0"
-                        : ""
-                    }`}
                   />
                 </div>
               )}
