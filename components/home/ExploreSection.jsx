@@ -29,7 +29,7 @@ export default function ExploreSection() {
 
               <Link
                 href={`/destinations/${activeProvince.slug}`}
-                className="mt-4 block text-blue-400 hover:opacity-75"
+                className="mt-4 block text-blue-400 hover:opacity-75 hover:underline"
               >
                 Khám phá ngay
               </Link>

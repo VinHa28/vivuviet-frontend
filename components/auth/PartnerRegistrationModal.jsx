@@ -113,7 +113,7 @@ export default function PartnerRegistrationModal({
               </div>
               <button
                 onClick={onClose}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
                 disabled={isLoading}
               >
                 <X size={24} />
@@ -268,14 +268,14 @@ export default function PartnerRegistrationModal({
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 px-6 py-3 border border-gray-300 rounded-lg font-semibold text-text-primary hover:bg-gray-50 transition-colors"
+                  className="cursor-pointer flex-1 px-6 py-3 border border-gray-300 rounded-lg font-semibold text-text-primary hover:bg-gray-50 transition-colors"
                   disabled={isLoading}
                 >
                   Hủy
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 px-6 py-3 bg-secondary text-white rounded-lg font-semibold hover:bg-secondary/90 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="cursor-pointer flex-1 px-6 py-3 bg-secondary text-white rounded-lg font-semibold hover:bg-secondary/90 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   disabled={isLoading}
                 >
                   {isLoading ? (

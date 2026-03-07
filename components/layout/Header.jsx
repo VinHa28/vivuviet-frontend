@@ -71,12 +71,12 @@ export default function Header() {
   return (
     <header
       className={`
-        fixed top-0 left-0 w-full z-50 h-[90px]
+        fixed top-0 left-0 w-full z-50 h-22.5
         transition-all duration-500
         ${isScrolled ? "bg-white/70 backdrop-blur-md shadow-sm" : "bg-white"}
       `}
     >
-      <div className="max-w-[1170px] mx-auto w-full h-full flex justify-between items-center px-4">
+      <div className="max-w-292.5 mx-auto w-full h-full flex justify-between items-center px-4">
         <Logo />
 
         <nav className="flex items-center gap-8">
@@ -123,7 +123,7 @@ export default function Header() {
                   <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white font-semibold">
                     {currentUser.email?.[0]?.toUpperCase() || "U"}
                   </div>
-                  <span className="text-sm font-medium text-text-primary max-w-[120px] truncate">
+                  <span className="text-sm font-medium text-text-primary max-w-30 truncate">
                     {currentUser.businessName || currentUser.email}
                   </span>
                 </>
@@ -186,7 +186,7 @@ export default function Header() {
 
                     <button
                       onClick={handleLogout}
-                      className="w-full flex items-center gap-3 px-4 py-2 hover:bg-red-50 transition-colors text-left"
+                      className="cursor-pointer w-full flex items-center gap-3 px-4 py-2 hover:bg-red-50 transition-colors text-left"
                     >
                       <LogOut size={18} className="text-red-600" />
                       <span className="text-sm text-red-600 font-medium">
@@ -201,7 +201,7 @@ export default function Header() {
                         setShowUserMenu(false);
                         setShowLoginModal(true);
                       }}
-                      className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors w-full text-left"
+                      className="cursor-pointer flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors w-full text-left"
                     >
                       <User size={18} className="text-secondary" />
                       <span className="text-sm font-medium text-text-primary">
