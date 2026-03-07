@@ -7,45 +7,48 @@ import { AuthProvider } from "@/contexts/AuthContext";
 import FloatingChat from "@/components/ui/FloatingChat";
 import { Toaster } from "react-hot-toast";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import Script from "next/script";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
+  display: "swap", // Tối ưu load font
 });
 
 const alexBrush = Alex_Brush({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-alex-brush",
+  display: "swap",
 });
 
 const islandMoments = Island_Moments({
   subsets: ["latin"],
   weight: "400",
   variable: "--font-island-moments",
+  display: "swap",
 });
+
+// Cấu hình Metadata chuẩn
+export const metadata = {
+  title: "VivuViet",
+  description: "YOUR JOURNEY, YOUR STORY",
+  icons: {
+    icon: [{ url: "/favicon.png" }],
+    apple: "/apple-touch-icon.png",
+  },
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
         className={`
-          ${montserrat.variable}
-          ${alexBrush.variable}
-          ${islandMoments.variable}
+          ${montserrat.variable} 
+          ${alexBrush.variable} 
+          ${islandMoments.variable} 
+          antialiased
         `}
       >
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-E8KL2FNLM1" />
-        <Script id="google-analytics">
-          {`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-E8KL2FNLM1');
-    `}
-        </Script>
         <AuthProvider>
           <Header />
           <main className="pt-[90px] max-w-[1170px] mx-auto">{children}</main>
@@ -54,8 +57,9 @@ export default function RootLayout({ children }) {
           <LoginModal />
           <Toaster position="top-right" reverseOrder={false} />
         </AuthProvider>
+
+        <GoogleAnalytics gaId="G-E8KL2FNLM1" />
       </body>
-      <GoogleAnalytics gaId="G-E8KL2FNLM1" />
     </html>
   );
 }
