@@ -109,7 +109,7 @@ export default function Home() {
             <DestinationCard
               name="Nha Trang"
               sub="Khánh Hoà"
-              slug="nha-trang"
+              slug="khanh-hoa"
               img="/images/nha_trang.jpg"
               className="col-span-2"
             />
@@ -117,7 +117,7 @@ export default function Home() {
             <DestinationCard
               name="Hội An"
               sub="Đà Nẵng"
-              slug="hoi-an"
+              slug="da-nang"
               img="/images/hoi_an.jpg"
             />
 
@@ -125,7 +125,7 @@ export default function Home() {
             <DestinationCard
               name="Hà Nội"
               sub=""
-              slug="hanoi"
+              slug="ha-noi"
               img="/images/ha_noi.jpg"
             />
 
@@ -133,7 +133,7 @@ export default function Home() {
             <DestinationCard
               name="Tràng An"
               sub="Ninh Bình"
-              slug="trang-an"
+              slug="ninh-binh"
               img="/images/trang_an.jpg"
             />
 

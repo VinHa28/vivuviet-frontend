@@ -57,9 +57,20 @@ export default function PartnerRegistrationModal({
         title: "Đăng ký thành công!",
         message: `Yêu cầu của đối tác ${formData.businessName} đã được gửi đi. Vui lòng đợi quản trị viên phê duyệt trong vòng 24h.`,
       });
-      onClose();
+
+      setFormData({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        businessName: "",
+        phone: "",
+        website: "",
+        fanpage: "",
+        partnerTier: selectedTier,
+      });
       setShowResult(true);
     } catch (err) {
+      console.log(err);
       setResultStatus({
         status: "error",
         title: "Đăng ký thất bại",
@@ -295,7 +306,6 @@ export default function PartnerRegistrationModal({
           onAction={() => {
             setShowResult(false);
             if (resultStatus.status === "success") {
-              // Có thể redirect về trang chủ hoặc mở modal đăng nhập
               window.location.href = "/?showLogin=true";
             }
           }}

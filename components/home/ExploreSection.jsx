@@ -40,10 +40,10 @@ export default function ExploreSection() {
                 Khám Phá Việt Nam
               </Button>
               <h1 className="mt-5 text-[32px] text-text-primary w-120.5 leading-9 font-semibold">
-                Cùng
+                Cùng{" "}
                 <span className="font-medium font-script-1 text-[48px] text-secondary">
                   VivuViet
-                </span>
+                </span>{" "}
                 bắt đầu hành trình của bạn
               </h1>
               <p className="mt-2.5 text-[20px] font-light text-text-secondary w-133">

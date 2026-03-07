@@ -26,7 +26,7 @@ export default function StatusResult({
         onClick={onAction}
         className={`w-full py-4 rounded-xl font-bold text-white transition-all active:scale-95 shadow-md ${isSuccess ? "bg-secondary hover:bg-[#eab308]" : "bg-primary hover:bg-[#8e150c]"}`}
       >
-        {actionLabel}s
+        {actionLabel}
       </button>
     </div>
   );
