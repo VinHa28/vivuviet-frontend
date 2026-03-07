@@ -1,17 +1,9 @@
 "use client";
 
-import React, { useState, useMemo, useRef, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import Image from "next/image";
-import {
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Grid3X3,
-  List,
-  SlidersHorizontal,
-} from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { provinces } from "@/mock/offers";
-import Button from "@/components/ui/Button";
 import OfferCard from "@/components/offers/OfferCard";
 import OfferFilters from "@/components/offers/OfferFilters";
 import PartnersRow from "@/components/offers/PartnersRow";
@@ -161,11 +153,11 @@ export default function OffersSection({ initialFilters = null }) {
     <section className="mt-15 pb-20">
       <FloatingChat />
       {/* Header – Editorial Split */}
-      <div className="max-w-[1200px] mx-auto px-[40px] mb-[80px] grid grid-cols-2 gap-[60px] items-center">
+      <div className="max-w-300 mx-auto px-10 mb-20 grid grid-cols-2 gap-15 items-center">
         {/* Left content */}
         <div>
           <span className="inline-flex items-center gap-2 text-secondary text-sm tracking-wide">
-            <span className="w-6 h-[1px] bg-secondary"></span>
+            <span className="w-6 h-px bg-secondary"></span>
             Travel Deals
           </span>
 
@@ -176,15 +168,15 @@ export default function OffersSection({ initialFilters = null }) {
             </span>
           </h1>
 
-          <p className="mt-6 max-w-[520px] text-text-secondary text-lg leading-relaxed">
+          <p className="mt-6 max-w-130 text-text-secondary text-lg leading-relaxed">
             Những hành trình, trải nghiệm và dịch vụ du lịch chất lượng cao —
             được VivuViet chọn lọc từ các đối tác uy tín trên khắp Việt Nam.
           </p>
         </div>
 
         {/* Right visual */}
-        <div className="relative h-[320px]">
-          <div className="absolute top-0 right-0 w-[220px] h-[280px] rounded-2xl overflow-hidden">
+        <div className="relative h-80">
+          <div className="absolute top-0 right-0 w-55 h-70 rounded-2xl overflow-hidden">
             <Image
               src="/images/ha_long.jpg"
               fill
@@ -193,7 +185,7 @@ export default function OffersSection({ initialFilters = null }) {
             />
           </div>
 
-          <div className="absolute bottom-0 left-[40px] w-[180px] h-[220px] rounded-2xl overflow-hidden border border-white shadow-md">
+          <div className="absolute bottom-0 left-10 w-45 h-55 rounded-2xl overflow-hidden border border-white shadow-md">
             <Image
               src="/images/hoi_an.jpg"
               fill
@@ -202,7 +194,7 @@ export default function OffersSection({ initialFilters = null }) {
             />
           </div>
 
-          <div className="absolute left-0 top-[40px] w-[120px] h-[120px] rounded-full bg-secondary/10" />
+          <div className="absolute left-0 top-10 w-30 h-30 rounded-full bg-secondary/10" />
         </div>
       </div>
 
@@ -220,7 +212,7 @@ export default function OffersSection({ initialFilters = null }) {
         {/* Main Content Area */}
         <div className="flex-1">
           {/* Top Bar - Sort */}
-          <div className="flex justify-between items-center mb-[30px]">
+          <div className="flex justify-between items-center mb-7.5">
             <div className="relative">
               <button
                 onClick={() => setShowSortMenu(!showSortMenu)}
@@ -234,7 +226,7 @@ export default function OffersSection({ initialFilters = null }) {
               </button>
 
               {showSortMenu && (
-                <div className="absolute right-0 mt-2 w-[280px] bg-white border border-gray-200 rounded-md shadow-lg z-10 overflow-hidden">
+                <div className="absolute right-0 mt-2 w-70 bg-white border border-gray-200 rounded-md shadow-lg z-10 overflow-hidden">
                   {sortOptions.map((option) => (
                     <button
                       key={option.value}
@@ -395,7 +387,7 @@ export default function OffersSection({ initialFilters = null }) {
                     maxPrice: 999999999,
                   })
                 }
-                className="bg-[#A5200B] hover:bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
+                className="bg-[#A5200B] hover:bg-red-600 text-white px-6 py-3 rounded-xl font-semibold transition-colors"
               >
                 Xóa tất cả bộ lọc
               </button>
