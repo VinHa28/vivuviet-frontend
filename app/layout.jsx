@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
       >
         <AuthProvider>
           <Header />
-          <main className="pt-[90px] max-w-[1170px] mx-auto">{children}</main>
+          <main className="pt-22.5 max-w-292.5 mx-auto">{children}</main>
           <FloatingChat />
           <Footer />
           <LoginModal />

@@ -43,7 +43,7 @@ const Button = React.forwardRef(
           "group",
           className,
           hoverable ? "cursor-pointer" : "",
-          isButton ? "hover:opacity-90 font-[300]" : "",
+          isButton ? "hover:opacity-90 font-light" : "",
           
         )}
         onClick={onClick}

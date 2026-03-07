@@ -155,9 +155,9 @@ const ServiceSection = () => {
   };
 
   return (
-    <section className="mt-[60px] bg-white">
+    <section className="mt-15 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-start gap-[40px] border-b border-gray-100 mb-0 px-4">
+        <div className="flex items-center justify-start gap-10 border-b border-gray-100 mb-0 px-4">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -205,7 +205,7 @@ const ServiceSection = () => {
                 onChange={(value) => handleInputChange("destination", value)}
                 options={provinces.filter((p) => p !== "All")}
               />
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
 
               {/* Date Input */}
               <div className="flex-1 px-4 py-3">
@@ -219,7 +219,7 @@ const ServiceSection = () => {
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
               </div>
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
 
               {/* Group Input */}
               <div className="flex-1 px-4 py-3">
@@ -238,7 +238,7 @@ const ServiceSection = () => {
                   <option value="solo">Một mình</option>
                 </select>
               </div>
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
 
               {/* Budget Input */}
               <div className="flex-1 px-4 py-3">
@@ -269,7 +269,7 @@ const ServiceSection = () => {
                 onChange={(value) => handleInputChange("location", value)}
                 options={provinces.filter((p) => p !== "All")}
               />
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
               <div className="flex-1 px-4 py-3">
                 <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày nhận
@@ -281,7 +281,7 @@ const ServiceSection = () => {
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
               </div>
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
               <div className="flex-1 px-4 py-3">
                 <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày trả
@@ -307,7 +307,7 @@ const ServiceSection = () => {
                 onChange={(value) => handleInputChange("from", value)}
                 options={provinces.filter((p) => p !== "All")}
               />
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
               <AutocompleteInput
                 label="Điểm đến"
                 placeholder="Bạn muốn đi đâu?"
@@ -315,7 +315,7 @@ const ServiceSection = () => {
                 onChange={(value) => handleInputChange("to", value)}
                 options={provinces.filter((p) => p !== "All")}
               />
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
               <div className="flex-1 px-4 py-3">
                 <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày khởi hành
@@ -339,7 +339,7 @@ const ServiceSection = () => {
                 onChange={(value) => handleInputChange("location", value)}
                 options={provinces.filter((p) => p !== "All")}
               />
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
               <div className="flex-1 px-4 py-3">
                 <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày tham quan
@@ -351,7 +351,7 @@ const ServiceSection = () => {
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
               </div>
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
               <div className="flex-1 px-4 py-3">
                 <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Số lượng người
@@ -384,7 +384,7 @@ const ServiceSection = () => {
                   <option value="entertainment">Giải trí</option>
                 </select>
               </div>
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
               <AutocompleteInput
                 label="Địa điểm"
                 placeholder="Chọn nơi muốn tham gia"
@@ -392,7 +392,7 @@ const ServiceSection = () => {
                 onChange={(value) => handleInputChange("location", value)}
                 options={provinces.filter((p) => p !== "All")}
               />
-              <div className="h-8 w-[1px] bg-gray-200"></div>
+              <div className="h-8 w-px bg-gray-200"></div>
               <div className="flex-1 px-4 py-3">
                 <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày tham gia
@@ -409,7 +409,7 @@ const ServiceSection = () => {
 
           <button
             onClick={handleSearch}
-            className="cursor-pointer w-[48px] h-[48px] ml-2 bg-primary hover:bg-secondary text-white p-4 rounded-tl-[10px] rounded-br-[10px] rounded-bl-[5px] rounded-tr-[5px] transition-all shadow-md flex items-center justify-center"
+            className="cursor-pointer w-12 h-12 ml-2 bg-primary hover:bg-secondary text-white p-4 rounded-tl-[10px] rounded-br-[10px] rounded-bl-[5px] rounded-tr-[5px] transition-all shadow-md flex items-center justify-center"
           >
             <Search size={24} strokeWidth={3} />
           </button>

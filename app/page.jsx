@@ -10,9 +10,9 @@ export default function Home() {
   return (
     <>
       {/* Hero section */}
-      <section className="mt-[70px]">
-        <div className="mx-auto flex justify-between gap-[68px]">
-          <div className="w-[532px]">
+      <section className="mt-17.5">
+        <div className="mx-auto flex justify-between gap-17">
+          <div className="w-133">
             <Button size="md" isButton={false} hoverable={false}>
               Welcome to Vietnam
             </Button>
@@ -25,12 +25,12 @@ export default function Home() {
               đưa bạn đến mọi miền đất nước
             </h1>
 
-            <p className="mt-[30px] text-[20px] font-[400] text-text-secondary">
+            <p className="mt-7.5 text-[20px] font-normal text-text-secondary">
               Cùng VivuViet lên kế hoạch cho chuyến đi — chọn điểm đến, tìm ưu
               đãi, và bắt đầu hành trình của bạn.
             </p>
 
-            <div className="flex items-center gap-[14px] mt-[20px]">
+            <div className="flex items-center gap-3.5 mt-5">
               <Link href="#explore">
                 <Button>Khám phá ngay</Button>
               </Link>
@@ -84,19 +84,19 @@ export default function Home() {
       {/* Explores section*/}
       <ExploreSection />
       {/* Destinations */}
-      <section className=" py-[80px]">
+      <section className=" py-20">
         <div className=" mx-auto">
           {/* Title */}
           <Button
             size="md"
             isButton={false}
             hoverable={false}
-            className="mb-[32px]"
+            className="mb-8"
           >
             Địa điểm nổi bật
           </Button>
 
-          <div className="grid grid-cols-3 grid-rows-[260px_200px_200px] gap-[24px]">
+          <div className="grid grid-cols-3 grid-rows-[260px_200px_200px] gap-6">
             {/* Hạ Long – tall */}
             <DestinationCard
               name="Hạ Long"
@@ -180,7 +180,7 @@ function DestinationCard({ name, sub, img, slug, className = "" }) {
       <div className="absolute inset-0 bg-black/25 group-hover:bg-black/35 transition-all" />
 
       {/* text */}
-      <div className="absolute bottom-[20px] left-[20px] text-white">
+      <div className="absolute bottom-5 left-5 text-white">
         <p className="font-script-2 text-[42px] leading-none">{name}</p>
         {sub && <span className="text-sm opacity-90">{sub}</span>}
       </div>
