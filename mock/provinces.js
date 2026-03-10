@@ -112,7 +112,6 @@ export const provinces = [
     name: "Hà Nội",
     fill: "#848484",
     fillOpacity: "1",
-    active: true,
     shortDesc:
       "Thủ đô nghìn năm văn hiến với nhiều di tích lịch sử, phố cổ đặc trưng và nền ẩm thực phong phú như phở, bún chả.",
     pathSvg:
