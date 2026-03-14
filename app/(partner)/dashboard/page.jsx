@@ -342,33 +342,77 @@ export default function DashboardPage() {
   return (
     <Layout className="min-h-screen bg-gray-100">
       <Content className="p-8 max-w-7xl mx-auto w-full">
-        <Row gutter={16} className="mb-8">
-          <Col span={6}>
-            <Card variant={false} className="border-l-4 border-blue-500">
+        {/* Phần 4 Card thống kê đã cập nhật */}
+        <Row gutter={[16, 16]} className="mb-8">
+          <Col xs={24} sm={12} lg={6}>
+            <Card
+              variant={false}
+              className="border-l-4 border-blue-500 shadow-sm"
+            >
               <Statistic
-                title="Tổng dịch vụ"
+                title="Dịch vụ"
                 value={stats.totalServices}
                 prefix={<ShoppingOutlined />}
+                suffix={
+                  <span className="text-xs text-gray-400 font-normal ml-2">
+                    (Chờ duyệt: {stats.pendingServices})
+                  </span>
+                }
               />
             </Card>
           </Col>
-          <Col span={6}>
-            <Card variant={false} className="border-l-4 border-green-500">
+
+          <Col xs={24} sm={12} lg={6}>
+            <Card
+              variant={false}
+              className="border-l-4 border-green-500 shadow-sm"
+            >
               <Statistic
                 title="Bài viết"
                 value={stats.totalPosts}
                 prefix={<FileTextOutlined />}
+                suffix={
+                  <span className="text-xs text-gray-400 font-normal ml-2">
+                    (Mới: {posts.length})
+                  </span>
+                }
               />
             </Card>
           </Col>
-          <Col span={6}>
-            <Card variant={false} className="border-l-4 border-yellow-500">
-              <Statistic title="Đang hoạt động" value={stats.activeServices} />
+
+          <Col xs={24} sm={12} lg={6}>
+            <Card
+              variant={false}
+              className="border-l-4 border-orange-500 shadow-sm"
+            >
+              <Statistic
+                title="Tổng lượt xem"
+                value={stats.totalViews || 0}
+                precision={0}
+                prefix={<GlobalOutlined />}
+              />
             </Card>
           </Col>
-          <Col span={6}>
-            <Card variant={false} className="border-l-4 border-red-500">
-              <Statistic title="Chờ duyệt" value={stats.pendingServices} />
+
+          <Col xs={24} sm={12} lg={6}>
+            <Card
+              variant={false}
+              className="border-l-4 border-purple-500 shadow-sm bg-gradient-to-r from-white to-purple-50 h-full"
+            >
+              <div className="ant-statistic">
+                <div className="ant-statistic-title">Gói thành viên</div>
+                <div className="ant-statistic-content flex items-center">
+                  <span className="ant-statistic-content-value">
+                    {/* Giả định dữ liệu gói nằm trong profile hoặc stats */}
+                    <Tag
+                      color="gold"
+                      className="text-sm px-3 py-1 font-bold uppercase"
+                    >
+                      {dashboardData.profile?.tier || "Đối tác chiến lược"}
+                    </Tag>
+                  </span>
+                </div>
+              </div>
             </Card>
           </Col>
         </Row>
