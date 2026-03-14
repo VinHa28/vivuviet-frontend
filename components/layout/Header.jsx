@@ -30,6 +30,13 @@ export default function Header() {
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -67,7 +74,7 @@ export default function Header() {
     setShowUserMenu(false);
     router.push("/");
   };
-
+  if (!mounted) return null;
   return (
     <header
       className={`

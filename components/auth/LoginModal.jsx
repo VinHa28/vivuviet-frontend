@@ -29,8 +29,7 @@ export default function LoginModal() {
   };
 
   const handleSubmit = async (e) => {
-    // e.preventDefault();
-    console.log("1. start");
+    e.preventDefault();
     setServerError("");
 
     let valid = true;
@@ -50,24 +49,22 @@ export default function LoginModal() {
     }
 
     setErrors(newErrors);
-    console.log("handleSubmit called", e);
 
     if (valid) {
       setIsLoading(true);
-      console.log("3. calling login...");
 
       try {
         const user = await login(formData);
         // Thành công
-        if (user) router.push("/dashboard");
+        if (user) window.location.href = "/dashboard";
       } catch (error) {
-        console.log("5. login error", error);
         const errorMessage =
           error.response?.data?.message ||
           "Tài khoản hoặc mật khẩu không chính xác";
         setServerError(errorMessage);
       } finally {
         setIsLoading(false);
+        setShowLoginModal(false);
       }
     }
   };
@@ -102,7 +99,7 @@ export default function LoginModal() {
           </div>
         )}
 
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Email
@@ -146,8 +143,7 @@ export default function LoginModal() {
           </div>
 
           <Button
-            type="button"
-            onClick={handleSubmit}
+            type="submit"
             disabled={isLoading}
             className={`w-full px-6 py-3 bg-primary text-white rounded-lg font-semibold transition-transform active:scale-95 mt-2 ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
           >

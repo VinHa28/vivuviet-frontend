@@ -6,13 +6,9 @@ import axiosClient from "@/lib/axios";
  */
 export const login = async (data) => {
   const res = await axiosClient.post("/auth/login", data);
-  const responseData = res.data || res;
-  console.log("login() res:", res);
-  const { token, user } = responseData;
 
-  if (!token) {
-    throw new Error(responseData.message || "Đăng nhập thất bại");
-  }
+  const responseData = res.data || res;
+  const { token, user } = responseData;
 
   if (typeof window !== "undefined") {
     localStorage.setItem("accessToken", token);
@@ -21,6 +17,7 @@ export const login = async (data) => {
 
   return user;
 };
+
 /**
  * Gọi API register partner
  * @param {Object} data { email, password, businessName, phone, website, fanpage, partnerTier }

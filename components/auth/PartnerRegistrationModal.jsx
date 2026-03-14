@@ -70,7 +70,7 @@ export default function PartnerRegistrationModal({
       });
       setShowResult(true);
     } catch (err) {
-      console.log(err);
+      console.err(err);
       setResultStatus({
         status: "error",
         title: "Đăng ký thất bại",

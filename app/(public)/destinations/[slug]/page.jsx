@@ -20,7 +20,6 @@ export default function DestinationPage() {
   const fetchDestination = async (slug) => {
     try {
       const data = await getDestinationDetail(slug);
-      console.log(data);
       setDestination(data);
       setCurrentPost(data.posts?.[0] || null);
     } catch (error) {
