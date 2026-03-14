@@ -128,14 +128,6 @@ export default function OffersSection({ initialFilters = null }) {
 
   const currentSort = sortOptions.find((opt) => opt.value === sortBy);
 
-  const partners = [
-    { id: 1, name: "Vivu Travel", logo: "/icons/tabler_beach.svg" },
-    { id: 2, name: "Ocean Hotels", logo: "/icons/mingcute_hotel-line.svg" },
-    { id: 3, name: "Sky Transport", logo: "/icons/tdesign_vehicle.svg" },
-    { id: 4, name: "Golden Restaurant", logo: "/icons/plane_vector.svg" },
-    { id: 5, name: "Local Guides", logo: "/icons/Vector.svg" },
-  ];
-
   useEffect(() => {
     const fetchOffers = async () => {
       try {
@@ -198,7 +190,7 @@ export default function OffersSection({ initialFilters = null }) {
         </div>
       </div>
 
-      <PartnersRow partners={partners} />
+      <PartnersRow />
 
       {/* Main Content */}
       <div className="flex gap-7.5">

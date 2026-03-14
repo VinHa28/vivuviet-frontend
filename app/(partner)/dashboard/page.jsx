@@ -34,6 +34,7 @@ import {
   InfoCircleOutlined,
 } from "@ant-design/icons";
 import { getPartnerDashboard } from "@/services/userService";
+import TextEditorModal from "@/components/ui/TextEditorModal";
 
 const { Content } = Layout;
 const { Option } = Select;
@@ -48,6 +49,7 @@ export default function DashboardPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [avatarFile, setAvatarFile] = useState(null);
+  const [isOpenTextEditor, setIsOpenTextEditor] = useState(false);
 
   const [form] = Form.useForm();
   const [serviceForm] = Form.useForm();
@@ -81,6 +83,10 @@ export default function DashboardPage() {
       }
     };
   }, [avatarPreview]);
+
+  const onCloseTextEditor = () => {
+    setIsOpenTextEditor(false);
+  };
 
   // Xử lý preview logo doanh nghiệp
   const handleAvatarChange = (info) => {
@@ -194,7 +200,7 @@ export default function DashboardPage() {
             <Button
               type="primary"
               icon={<PlusOutlined />}
-              className="bg-[#a5190e] border-[#a5190e]"
+              className="bg-primary border-primary"
               onClick={() => setIsModalOpen(true)}
             >
               Tạo dịch vụ mới
@@ -220,8 +226,13 @@ export default function DashboardPage() {
         <>
           <div className="flex justify-between items-center mb-4">
             <h3 className="font-bold text-lg">Bài viết văn hóa & du lịch</h3>
-            <Button type="dashed" icon={<PlusOutlined />}>
-              Tạo bài viết mới
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={() => setIsOpenTextEditor(true)}
+              className="bg-primary border-primary"
+            >
+              Tạo bài đăng mới
             </Button>
           </div>
           <Table
@@ -485,6 +496,12 @@ export default function DashboardPage() {
           </Form>
         </Modal>
       </Content>
+
+      <TextEditorModal
+        isOpenModal={isOpenTextEditor}
+        initialData={""}
+        onCloseModal={onCloseTextEditor}
+      />
     </Layout>
   );
 }

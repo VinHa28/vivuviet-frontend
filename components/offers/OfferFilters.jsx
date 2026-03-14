@@ -11,22 +11,22 @@ export default function OfferFilters({
 }) {
   // Add icon paths so the service buttons match the tab titles in ServiceSection
   const serviceTypes = [
-    { value: "all", label: "Tất cả", icon: "/icons/Vector.svg" },
+    { value: "all", label: "Tất cả", icon: "/icons/tower.svg" },
     { value: "tour", label: "Tour du lịch", icon: "/icons/tabler_beach.svg" },
     {
       value: "hotel",
       label: "Khách sạn",
       icon: "/icons/mingcute_hotel-line.svg",
     },
-    { value: "restaurant", label: "Nhà hàng", icon: "/icons/tabler_beach.svg" },
+    { value: "restaurant", label: "Nhà hàng", icon: "/icons/restaurant.svg" },
     {
       value: "transport",
       label: "Vận chuyển",
       icon: "/icons/tdesign_vehicle.svg",
     },
-    { value: "experience", label: "Trải nghiệm", icon: "/icons/Vector.svg" },
-    { value: "homestay", label: "Homstay", icon: "/icons/Vector.svg" },
-    { value: "other", label: "Khác", icon: "/icons/tabler_beach.svg" },
+    { value: "experience", label: "Trải nghiệm", icon: "/icons/star.svg" },
+    { value: "homestay", label: "Homstay", icon: "/icons/homstay.svg" },
+    { value: "other", label: "Khác", icon: "/icons/other.svg" },
   ];
 
   const priceRanges = [
@@ -134,7 +134,7 @@ export default function OfferFilters({
                 onClick={() => handleTypeChange(type.value)}
                 className={`flex items-center gap-2 p-2.5 rounded-xl text-[13px] font-medium transition-all duration-200 text-left ${
                   selectedType === type.value
-                    ? "text-red-600 border-b-2 border-red-600 pb-2"
+                    ? "text-primary border-b-2 border-primary pb-2"
                     : "text-gray-600 hover:text-black border-b-2 border-transparent"
                 }`}
               >
@@ -148,7 +148,7 @@ export default function OfferFilters({
                       style={{
                         filter:
                           selectedType === type.value
-                            ? "invert(26%) sepia(76%) saturate(1831%) hue-rotate(347deg) brightness(99%) contrast(101%)"
+                            ? "invert(16%) sepia(92%) saturate(4636%) hue-rotate(358deg) brightness(87%) contrast(96%)"
                             : "grayscale(100%) opacity(0.7)",
                       }}
                     />

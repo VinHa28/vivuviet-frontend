@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@next/third-parties": "^16.1.6",
+    "@webbycrown/react-advanced-richtext-editor": "^1.0.1-0",
     "antd": "^6.3.2",
     "axios": "^1.13.4",
     "clsx": "^2.1.1",
