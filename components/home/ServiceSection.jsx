@@ -30,7 +30,7 @@ const ServiceSection = () => {
       icon: "/icons/tdesign_vehicle.svg",
     },
     { id: "tours", label: "Tour du lịch", icon: "/icons/tabler_beach.svg" },
-    { id: "culture", label: "Du lịch văn hóa", icon: "/icons/Vector.svg" },
+    { id: "culture", label: "Du lịch văn hóa", icon: "/icons/tower.svg" },
     { id: "activities", label: "Hoạt động khác" },
   ];
 
