@@ -39,13 +39,13 @@ export default function ExploreSection() {
               <Button size="md" isButton={false} hoverable={false}>
                 Khám Phá Việt Nam
               </Button>
-              <h1 className="mt-5 text-[32px] text-text-primary w-120.5 leading-9 font-semibold">
+              <h2 className="mt-5 text-[32px] text-text-primary w-120.5 leading-9 font-semibold">
                 Cùng{" "}
                 <span className="font-medium font-script-1 text-[48px] text-secondary">
                   VivuViet
                 </span>{" "}
                 bắt đầu hành trình của bạn
-              </h1>
+              </h2>
               <p className="mt-2.5 text-[20px] font-light text-text-secondary w-133">
                 Việt Nam là một đất nước đa dạng tuyệt vời, với vô vàn địa điểm
                 hấp dẫn để khám phá. Những trải nghiệm tuyệt vời này là khởi đầu

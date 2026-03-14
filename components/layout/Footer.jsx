@@ -47,12 +47,12 @@ export default function Footer() {
 
         <div>
           <h4 className="text-text-primary font-medium font-primary text-[20px] mb-6">
-            Discover
+            Khám phá
           </h4>
           <ul className="flex flex-col gap-4 text-text-secondary font-primary">
             <li>
               <Link href="/" className="hover:text-primary transition-colors">
-                Home
+                Trang chủ
               </Link>
             </li>
             <li>
@@ -60,7 +60,7 @@ export default function Footer() {
                 href="/about"
                 className="hover:text-primary transition-colors"
               >
-                About
+                Về chúng tôi
               </Link>
             </li>
             <li>
@@ -68,7 +68,7 @@ export default function Footer() {
                 href="/offers"
                 className="hover:text-primary transition-colors"
               >
-                Tours
+                Ưu đãi
               </Link>
             </li>
           </ul>
@@ -77,7 +77,7 @@ export default function Footer() {
         {/* Cột 3: Quick Links */}
         <div>
           <h4 className="text-text-primary font-medium font-primary text-[20px] mb-6">
-            Quick Links
+            Liên kết nhanh
           </h4>
           <ul className="flex flex-col gap-4 text-text-secondary font-primary">
             <li>
@@ -86,7 +86,7 @@ export default function Footer() {
                 onClick={() => setShowLoginModal(true)}
                 className="hover:text-primary transition-colors cursor-pointer"
               >
-                Login
+                Đăng nhập
               </button>
             </li>
           </ul>
@@ -95,7 +95,7 @@ export default function Footer() {
         {/* Cột 4: Contact */}
         <div>
           <h4 className="text-text-primary font-medium font-primary text-[20px] mb-6">
-            Contact
+            Liên hệ
           </h4>
           <ul className="flex flex-col gap-4 text-text-secondary font-primary">
             <li className="flex items-center gap-3">

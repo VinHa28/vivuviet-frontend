@@ -28,25 +28,25 @@ const Button = React.forwardRef(
       loading = false,
       children,
       isButton = true,
-      onClick = () => {},
-      ...props
+        ...props
     },
     ref,
   ) => {
     return (
       <button
         ref={ref}
+        {...props}
+        disabled={disabled || loading}
         className={clsx(
           sizes[size],
           variants[variant],
           base,
           "group",
           className,
-          hoverable ? "cursor-pointer" : "",
-          isButton ? "hover:opacity-90 font-light" : "",
-          
+          hoverable && "cursor-pointer",
+          isButton && "hover:opacity-90 font-light",
+          (disabled || loading) && "opacity-50 cursor-not-allowed",
         )}
-        onClick={onClick}
       >
         <div
           className={`absolute -top-px -left-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}

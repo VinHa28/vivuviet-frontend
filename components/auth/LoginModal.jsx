@@ -1,34 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { X } from "lucide-react";
+import { X, AlertCircle } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import Button from "@/components/ui/Button";
 import { login } from "@/services/authService";
+import { useRouter } from "next/navigation";
 
 export default function LoginModal() {
+  const router = useRouter();
   const { showLoginModal, setShowLoginModal } = useAuth();
 
-  // 1. Khởi tạo state cho dữ liệu nhập và lỗi
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({ email: "", password: "" });
+  // 1. Thêm state lưu lỗi từ server
+  const [serverError, setServerError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   if (!showLoginModal) return null;
 
-  // 2. Cập nhật giá trị khi người dùng nhập liệu
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Xóa thông báo lỗi ngay khi người dùng bắt đầu gõ lại
-    if (errors[name]) {
-      setErrors((prev) => ({ ...prev, [name]: "" }));
-    }
+    // Xóa lỗi field và lỗi server khi người dùng gõ lại
+    if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
+    if (serverError) setServerError("");
   };
 
-  // 3. Kiểm tra lỗi khi nhấn Đăng nhập
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
+    console.log("1. start");
+    setServerError("");
+
     let valid = true;
     let newErrors = { email: "", password: "" };
 
@@ -46,22 +50,31 @@ export default function LoginModal() {
     }
 
     setErrors(newErrors);
+    console.log("handleSubmit called", e);
 
     if (valid) {
-      console.log("Dữ liệu hợp lệ, đang xử lý:", formData);
+      setIsLoading(true);
+      console.log("3. calling login...");
+
       try {
         const user = await login(formData);
-        console.log(user);
-        return (window.location.href = "/dashboard");
+        // Thành công
+        if (user) router.push("/dashboard");
       } catch (error) {
-        console.error("Có lỗi khi đăng nhập", error);
+        console.log("5. login error", error);
+        const errorMessage =
+          error.response?.data?.message ||
+          "Tài khoản hoặc mật khẩu không chính xác";
+        setServerError(errorMessage);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
 
   return (
     <div
-      className="fixed inset-0 bg-black/50 z-9999 flex items-center justify-center p-4 backdrop-blur-sm"
+      className="fixed inset-0 bg-black/50 z-[9999] flex items-center justify-center p-4 backdrop-blur-sm"
       onClick={() => setShowLoginModal(false)}
     >
       <div
@@ -69,19 +82,27 @@ export default function LoginModal() {
         onClick={(e) => e.stopPropagation()}
       >
         <button
+          type="button"
           onClick={() => setShowLoginModal(false)}
           className="absolute top-4 right-4 p-1 hover:bg-gray-100 rounded-full transition-colors"
         >
           <X size={24} className="text-gray-600" />
         </button>
 
-        <div className="text-center mb-8">
+        <div className="text-center mb-6">
           <h1 className="text-3xl font-bold text-gray-900">Đăng nhập</h1>
           <p className="text-gray-500 mt-2">Chào mừng bạn trở lại VivuViet</p>
         </div>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          {/* Email Field */}
+        {/* 3. Hiển thị thông báo lỗi Server ngay tại đây */}
+        {serverError && (
+          <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-600 text-sm rounded-lg flex items-center gap-2 animate-shake">
+            <AlertCircle size={18} />
+            <span>{serverError}</span>
+          </div>
+        )}
+
+        <form className="space-y-4">
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Email
@@ -99,11 +120,10 @@ export default function LoginModal() {
               }`}
             />
             {errors.email && (
-              <p className="text-red-500 text-xs mt-1 ">{errors.email}</p>
+              <p className="text-red-500 text-xs mt-1">{errors.email}</p>
             )}
           </div>
 
-          {/* Password Field */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               Mật khẩu
@@ -126,10 +146,12 @@ export default function LoginModal() {
           </div>
 
           <Button
-            type="submit"
-            className="w-full px-6 py-3 bg-primary text-white rounded-lg font-semibold transition-transform active:scale-95 mt-2"
+            type="button"
+            onClick={handleSubmit}
+            disabled={isLoading}
+            className={`w-full px-6 py-3 bg-primary text-white rounded-lg font-semibold transition-transform active:scale-95 mt-2 ${isLoading ? "opacity-70 cursor-not-allowed" : ""}`}
           >
-            Đăng nhập
+            {isLoading ? "Đang xử lý..." : "Đăng nhập"}
           </Button>
         </form>
 

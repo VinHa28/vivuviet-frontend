@@ -11,9 +11,9 @@ export default function HeroBanner({ image, alt, title }) {
 
             <div className="absolute inset-0 flex items-center justify-center">
                 <div className="px-4">
-                    <h1 className="font-script-2 text-6xl md:text-9xl text-white text-center drop-shadow-2xl">
+                    <h2 className="font-script-2 text-6xl md:text-9xl text-white text-center drop-shadow-2xl">
                         {title}
-                    </h1>
+                    </h2>
                 </div>
             </div>
         </div>
