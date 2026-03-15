@@ -71,8 +71,7 @@ export default function OfferCard({ offer }) {
         >
           <Image
             src={
-              offer.images?.[0] ||
-              "https://via.placeholder.com/360x460?text=No+Image"
+              offer.image ||""
             }
             alt={offer.name}
             fill

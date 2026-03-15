@@ -37,14 +37,10 @@ export default function OffersSection({ initialFilters = null }) {
       result = result.filter((offer) => offer.type === filters.type);
     }
 
-    // Filter by location (address contains province/keyword)
-    // Normalize both strings to lowercase for comparison
     if (filters.province && filters.province !== "All") {
       const searchTerm = filters.province.toLowerCase().trim();
       result = result.filter((offer) => {
         const addressLower = offer.address.toLowerCase();
-        // Check if search term appears in address
-        // This handles cases like "Hạ Long" appearing in "Hạ Long, Quảng Ninh"
         return addressLower.includes(searchTerm);
       });
     }

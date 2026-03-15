@@ -131,7 +131,7 @@ export default function PartnersRow() {
             >
               <div className="w-14 h-14 md:w-16 md:h-16 relative">
                 <Image
-                  src={p.logo}
+                  src={p.logo || "/placeholder-logo.png"}
                   alt={p.businessName}
                   fill
                   sizes="64px"
