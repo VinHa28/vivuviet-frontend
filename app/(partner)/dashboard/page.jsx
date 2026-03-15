@@ -24,7 +24,6 @@ export default function DashboardPage() {
     const fetchData = async () => {
       try {
         const res = await getPartnerDashboard();
-        console.log(res);
         setData(res.data);
       } catch (err) {
         console.error(err);

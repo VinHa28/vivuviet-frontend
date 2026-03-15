@@ -1,109 +1,51 @@
-/* eslint-disable react-hooks/set-state-in-effect */
-"use client";
-import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-import HeroBanner from "@/components/destination/HeroBanner";
-import Gallery from "@/components/destination/Gallery";
-import RelatedArticles from "@/components/destination/RelatedArticles";
-import TabNavigation from "@/components/destination/TabNavigation";
-import MainLayout from "@/components/layout/MainLayout";
-import Post from "@/components/destination/Post";
+import DestinationClient from "@/components/pages/DestinationClient";
 import { getDestinationDetail } from "@/services/postService";
-import Button from "@/components/ui/Button";
 
-export default function DestinationPage() {
-  const params = useParams();
-  const [destination, setDestination] = useState(null);
-  const [currentPost, setCurrentPost] = useState(null);
-  const [loading, setLoading] = useState(true);
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
 
-  const fetchDestination = async (slug) => {
-    try {
-      const data = await getDestinationDetail(slug);
-      setDestination(data);
-      setCurrentPost(data.posts?.[0] || null);
-    } catch (error) {
-      console.error("Lỗi load destination:", error.message);
-      setDestination(null);
-      setCurrentPost(null);
-    } finally {
-      setLoading(false);
-    }
-  };
+  try {
+    const destination = await getDestinationDetail(slug);
 
-  const handleTabChange = (id) => {
-    const post = destination.posts.find((p) => p.id === id);
-    setCurrentPost(post);
-  };
+    if (!destination) return { title: "Không tìm thấy điểm đến" };
 
-  useEffect(() => {
-    if (params?.slug) {
-      setLoading(true);
-      fetchDestination(params.slug);
-    }
-  }, [params?.slug]);
+    const title = destination.title || "Điểm đến du lịch";
 
-  // 1. Trạng thái đang tải dữ liệu
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center h-screen font-primary text-gray-500">
-        Đang tải dữ liệu...
-      </div>
-    );
+    const description =
+      destination.posts?.[0]?.content?.substring(0, 160) ||
+      "Khám phá những trải nghiệm tuyệt vời tại " + title;
+
+    const imageUrl =
+      destination.posts?.[0]?.banner?.image || "/default-og-image.jpg";
+
+    return {
+      title,
+      description,
+      alternates: {
+        canonical: `/destinations/${slug}`,
+      },
+      openGraph: {
+        title: `${title} | VivuViet`,
+        description,
+        url: `https://vivuviet.info.vn/destinations/${slug}`,
+        images: [
+          {
+            url: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: title,
+          },
+        ],
+        type: "article",
+      },
+    };
+  } catch {
+    return { title: "Chi tiết điểm đến | VivuViet" };
   }
+}
 
-  // 2. KIỂM TRA isActive: Nếu false thì hiển thị giao diện Coming Soon
-  if (destination && destination.isActive === false) {
-    return (
-      <div className="flex flex-col items-center justify-center h-[80vh] text-center px-4">
-        <h2 className="text-5xl font-bold text-primary mb-4 animate-pulse font-script-1">
-          Coming Soon
-        </h2>
-        <p className="text-gray-600 text-lg max-w-md">
-          Điểm đến{" "}
-          <i className="font-medium text-primary">
-            {destination.title || "**này**"}
-          </i>{" "}
-          đang được chúng tôi cập nhật nội dung. Vui lòng quay lại sau nhé!
-        </p>
-        <Button
-          onClick={() => window.history.back()}
-          className="mt-8 flex items-center justify-center"
-        >
-          Quay lại
-        </Button>
-      </div>
-    );
-  }
+export default async function Page({ params }) {
+  const { slug } = await params;
 
-  // 3. Nếu không có dữ liệu hoặc không có bài viết
-  if (!destination || !currentPost) {
-    return (
-      <div className="flex items-center justify-center h-screen text-gray-500 font-primary">
-        Không tìm thấy thông tin điểm đến.
-      </div>
-    );
-  }
-
-  return (
-    <>
-      <HeroBanner
-        image={currentPost.banner?.image}
-        alt={currentPost.banner?.alt}
-        title={currentPost.banner?.title}
-      />
-
-      <TabNavigation
-        posts={destination.posts}
-        currentPost={currentPost}
-        onTabChange={handleTabChange}
-      />
-
-      <MainLayout>
-        <Post postContent={currentPost.content} />
-        <Gallery images={currentPost.gallery} />
-        <RelatedArticles articles={currentPost.relatedArticles} />
-      </MainLayout>
-    </>
-  );
+  return <DestinationClient slug={slug} />;
 }

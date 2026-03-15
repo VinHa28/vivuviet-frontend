@@ -14,11 +14,13 @@ import {
 } from "antd";
 import { Plus, Trash2, Eye, Edit, UploadCloud } from "lucide-react";
 import "./editor.css";
+import { getActiveDestinations } from "@/services/destinationService";
+import { createPartnerPost } from "@/services/partnerService";
 
 export default function TextEditorModal({
   isOpenModal,
   onCloseModal,
-  initialData, 
+  initialData,
 }) {
   const [form] = Form.useForm();
   const [content, setContent] = useState("");
@@ -47,9 +49,8 @@ export default function TextEditorModal({
     if (!isOpenModal) return;
 
     const fetchDestinations = async () => {
-      // const data = await getAactiveDestinations();
-      // setDestinations(data);
-      console.log("getDestination");
+      const data = await getActiveDestinations();
+      setDestinations(data);
     };
     fetchDestinations();
 
@@ -103,18 +104,26 @@ export default function TextEditorModal({
 
   // 3. Xử lý thêm ảnh vào Gallery
   const handleAddGalleryImage = (values) => {
-    const file = values.image.file;
-    const preview = URL.createObjectURL(file);
+    const fileObj = values.image?.[0]?.originFileObj;
+
+    if (!fileObj) {
+      message.error("Không tìm thấy file ảnh!");
+      return;
+    }
+
+    const preview = URL.createObjectURL(fileObj);
+
     setImageList([
       ...imageList,
       {
         id: Date.now(),
-        imageFile: file,
+        imageFile: fileObj,
         preview: preview,
         alt: values.alt,
         isExisting: false,
       },
     ]);
+
     galleryForm.resetFields();
     setIsImageModalOpen(false);
   };
@@ -122,7 +131,6 @@ export default function TextEditorModal({
   // 4. Gửi dữ liệu (Submit)
   const handleSubmit = async () => {
     try {
-      // Validate Frontend
       const values = await form.validateFields();
       if (!content || content.trim() === "" || content === "<p><br></p>") {
         return message.error("Vui lòng nhập nội dung bài viết!");
@@ -133,44 +141,34 @@ export default function TextEditorModal({
       formData.append("title", values.title);
       formData.append("content", content);
       formData.append("destinationId", values.destinationId);
-      formData.append("bannerTitle", values.bannerTitle);
-      formData.append("bannerAlt", values.bannerAlt);
+      formData.append("bannerTitle", values.bannerTitle || "");
+      formData.append("bannerAlt", values.bannerAlt || "");
 
       if (banner.imageFile) {
         formData.append("bannerImage", banner.imageFile);
       }
 
-      // Tách ảnh Gallery cũ và mới
-      const existingGallery = imageList
-        .filter((img) => img.isExisting)
-        .map((img) => ({ image: img.preview, alt: img.alt }));
-
-      formData.append("existingGallery", JSON.stringify(existingGallery));
-
-      imageList
-        .filter((img) => !img.isExisting)
-        .forEach((item) => {
+      // Xử lý Gallery cho trường hợp Partner tạo mới
+      imageList.forEach((item) => {
+        if (!item.isExisting) {
           formData.append("galleryImages", item.imageFile);
-          formData.append(`galleryAlts`, item.alt);
-        });
+          formData.append("galleryAlts", item.alt);
+        }
+      });
 
-      // Gọi API tương ứng
       if (initialData?._id) {
-        // await updatePost(formData, initialData._id);
-        console.log("Update");
-        message.success("Cập nhật bài viết thành công!");
+        // logic update nếu cần
+        console.log("Update logic here");
       } else {
-        console.log("Create");
-        // await createNewPost(formData);
-        message.success("Tạo bài viết mới thành công!");
+        // GỌI API TẠO BÀI VIẾT PARTNER
+        await createPartnerPost(formData);
+        message.success("Gửi bài viết thành công, vui lòng chờ phê duyệt!");
       }
 
+      if (onRefresh) onRefresh(); // Gọi hàm tải lại danh sách ở trang cha
       onCloseModal();
     } catch (error) {
-      // Hiển thị lỗi từ Validate hoặc từ Backend trả về
-      const errorMsg =
-        error.response?.data?.message || error.message || "Có lỗi xảy ra!";
-      message.error(errorMsg);
+      message.error(error.message || "Có lỗi xảy ra khi đăng bài!");
     } finally {
       setLoading(false);
     }

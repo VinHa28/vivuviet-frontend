@@ -59,3 +59,15 @@ export const getMyServicesApi = async () => {
     throw error.response?.data || error;
   }
 };
+
+export const createPartnerPost = async (formData) => {
+  return axiosClient.post("/posts", formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+};
+
+export const getPartnerPosts = async () => {
+  return axiosClient.get("/posts/partner-posts");
+};
