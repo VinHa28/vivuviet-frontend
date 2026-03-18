@@ -11,8 +11,14 @@ export async function generateMetadata({ params }) {
 
     const title = destination.title || "Điểm đến du lịch";
 
+    // Lấy nội dung thô từ bài viết
+    const rawContent = destination.posts?.[0]?.content || "";
+
+    // Lọc sạch thẻ HTML trước khi cắt 160 ký tự
+    const plainTextDescription = stripHtml(rawContent).substring(0, 160).trim();
+
     const description =
-      destination.posts?.[0]?.content?.substring(0, 160) ||
+      plainTextDescription ||
       "Khám phá những trải nghiệm tuyệt vời tại " + title;
 
     const imageUrl =
@@ -48,4 +54,9 @@ export default async function Page({ params }) {
   const { slug } = await params;
 
   return <DestinationClient slug={slug} />;
+}
+
+function stripHtml(html) {
+  if (!html) return "";
+  return html.replace(/<[^>]*>?/gm, "");
 }
