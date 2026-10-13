@@ -66,8 +66,7 @@ export default function VietnamMaps({ setActiveProvince }) {
       )}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="570"
-        height="555"
+        className="w-full max-w-160 h-auto"
         viewBox="0 0 570 555"
         fill="none"
       >
