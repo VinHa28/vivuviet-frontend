@@ -1,59 +1,48 @@
+import { cache } from "react";
+import { notFound } from "next/navigation";
 import DestinationClient from "@/components/pages/DestinationClient";
-import { getDestinationDetail } from "@/services/postService";
+import { getDestinationServer } from "@/services/postService";
+
+const getDestination = cache(getDestinationServer);
 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
+  const destination = await getDestination(slug);
 
-  try {
-    const destination = await getDestinationDetail(slug);
-
-    if (!destination) return { title: "Không tìm thấy điểm đến" };
-
-    const title = destination.title || "Điểm đến du lịch";
-
-    // Lấy nội dung thô từ bài viết
-    const rawContent = destination.posts?.[0]?.content || "";
-
-    // Lọc sạch thẻ HTML trước khi cắt 160 ký tự
-    const plainTextDescription = stripHtml(rawContent).substring(0, 160).trim();
-
-    const description =
-      plainTextDescription ||
-      "Khám phá những trải nghiệm tuyệt vời tại " + title;
-
-    const imageUrl =
-      destination.posts?.[0]?.banner?.image || "/default-og-image.jpg";
-
-    return {
-      title,
-      description,
-      alternates: {
-        canonical: `/destinations/${slug}`,
-      },
-      openGraph: {
-        title: `${title} | VivuViet`,
-        description,
-        url: `https://vivuviet.info.vn/destinations/${slug}`,
-        images: [
-          {
-            url: imageUrl,
-            width: 1200,
-            height: 630,
-            alt: title,
-          },
-        ],
-        type: "article",
-      },
-    };
-  } catch {
-    return { title: "Chi tiết điểm đến | VivuViet" };
+  if (!destination) {
+    return { title: "Không tìm thấy điểm đến", robots: { index: false } };
   }
+
+  const title = destination.title || "Điểm đến du lịch";
+  const post = destination.posts?.[0];
+
+  const plainText = stripHtml(post?.content).substring(0, 160).trim();
+  const description =
+    plainText || `Khám phá những trải nghiệm tuyệt vời tại ${title}`;
+  const imageUrl = post?.banner?.image || "/default-og-image.jpg";
+
+  return {
+    title,
+    description,
+    alternates: { canonical: `/destinations/${slug}` },
+    robots: destination.isActive === false ? { index: false } : undefined,
+    openGraph: {
+      title: `${title} | VivuViet`,
+      description,
+      url: `/destinations/${slug}`,
+      images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
+      type: "article",
+    },
+  };
 }
 
 export default async function Page({ params }) {
   const { slug } = await params;
+  const destination = await getDestination(slug);
 
-  return <DestinationClient slug={slug} />;
+  if (!destination) notFound();
+
+  return <DestinationClient destination={destination} />;
 }
 
 function stripHtml(html) {
