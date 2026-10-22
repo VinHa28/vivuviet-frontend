@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import DestinationClient from "@/components/pages/DestinationClient";
 import { getDestinationServer } from "@/services/postService";
 import JsonLd from "@/components/seo/JsonLd";
+import { buildDescription } from "@/lib/seo";
 
 const getDestination = cache(getDestinationServer);
 
@@ -17,16 +18,18 @@ export async function generateMetadata({ params }) {
   const title = destination.title || "Điểm đến du lịch";
   const post = destination.posts?.[0];
 
-  const plainText = stripHtml(post?.content).substring(0, 160).trim();
   const description =
-    plainText || `Khám phá những trải nghiệm tuyệt vời tại ${title}`;
+    buildDescription(post?.content) ||
+    `Khám phá những trải nghiệm tuyệt vời tại ${title}`;
   const imageUrl = post?.banner?.image || "/og-image.jpg";
 
+  const hasContent = destination.isActive !== false && (destination.posts?.length ?? 0) > 0;
+
   return {
-    title,
+    title: `Du lịch ${title}: điểm đến và trải nghiệm`,
     description,
     alternates: { canonical: `/destinations/${slug}` },
-    robots: destination.isActive === false ? { index: false } : undefined,
+    robots: hasContent ? undefined : { index: false },
     openGraph: {
       title: `${title} | VivuViet`,
       description,
@@ -70,7 +73,7 @@ export default async function Page({ params }) {
       "@type": "TouristDestination",
       name: destination.title,
       url,
-      description: stripHtml(post?.content).substring(0, 160).trim() || undefined,
+      description: buildDescription(post?.content) || undefined,
       image: post?.banner?.image || undefined,
       inLanguage: "vi",
     },

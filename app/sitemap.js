@@ -18,14 +18,23 @@ const fallbackSlugs = [
 async function getDestinationSlugs() {
     try {
         const res = await fetch(`${API_URL}/destinations/active`, {
-            next: { revalidate: 3600 }, // làm mới tối đa mỗi giờ
+            next: { revalidate: 3600 },
         });
         if (!res.ok) throw new Error(`API lỗi ${res.status}`);
 
         const list = await res.json();
-        const slugs = list.map((d) => d.code).filter(Boolean);
+        const codes = list.map((d) => d.code).filter(Boolean);
 
-        return slugs.length > 0 ? slugs : fallbackSlugs;
+        // chỉ giữ điểm đến đã có ít nhất 1 bài viết
+        const details = await Promise.all(
+            codes.map((code) =>
+                fetch(`${API_URL}/destinations/${code}`, { next: { revalidate: 3600 } })
+                    .then((r) => (r.ok ? r.json() : null))
+                    .catch(() => null),
+            ),
+        );
+
+        return codes.filter((_, i) => details[i]?.posts?.length > 0);
     } catch (error) {
         console.error("Sitemap: dùng danh sách slug dự phòng.", error.message);
         return fallbackSlugs;
