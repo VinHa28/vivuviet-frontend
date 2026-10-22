@@ -3,6 +3,10 @@ const nextConfig = {
   /* Tối ưu build cho Docker / Deployment */
   output: "standalone",
 
+  /* Luôn đặt <title>/<meta> trong <head> cho mọi client (mặc định Next stream metadata xuống <body>
+     với trình duyệt/bot chạy được JS), để crawler không chạy JS và Lighthouse đều thấy. */
+  htmlLimitedBots: /.*/,
+
   images: {
     remotePatterns: [
       {
