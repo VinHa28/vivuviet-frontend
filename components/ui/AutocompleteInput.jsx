@@ -70,12 +70,13 @@ export default function AutocompleteInput({
 
     return (
         <div className="flex-1 px-4 py-3 relative" ref={containerRef}>
-            <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+            <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                 {label}
-            </h3>
+            </span>
             <div className="relative">
                 <input
                     type="text"
+                    aria-label={label}
                     placeholder={placeholder}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
@@ -87,6 +88,7 @@ export default function AutocompleteInput({
                 {value && (
                     <button
                         onClick={handleClear}
+                        aria-label="Xóa lựa chọn"
                         className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
                     >
                         <X size={16} />

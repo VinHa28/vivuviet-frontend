@@ -1,10 +1,33 @@
-import VietnamMaps from "@/components/maps/VietnamMaps";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import ServiceSection from "@/components/home/ServiceSection";
 import EventsSection from "@/components/home/EventsSection";
 import ExploreSection from "@/components/home/ExploreSection";
+import JsonLd from "@/components/seo/JsonLd";
+
+export const metadata = {
+  alternates: { canonical: "/" },
+};
+
+const siteJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "VivuViet",
+    url: "https://vivuviet.info.vn",
+    description:
+      "Nền tảng du lịch và trải nghiệm văn hóa Việt Nam: điểm đến, ưu đãi và sự kiện.",
+    sameAs: ["https://www.facebook.com/profile.php?id=61586817304762"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "VivuViet",
+    url: "https://vivuviet.info.vn",
+    inLanguage: "vi",
+  },
+]
 
 export default function Home() {
   return (
@@ -73,7 +96,7 @@ export default function Home() {
                 src="/icons/plane_vector.svg"
                 alt="plane icon"
                 fill
-                className="object-contain" 
+                className="object-contain"
               />
             </div>
           </div>
@@ -141,7 +164,7 @@ export default function Home() {
             <DestinationCard
               name="Phú Quốc"
               sub="An Giang"
-              slug="phu-quoc"
+              slug="an-giang"
               img="/images/phu_quoc.jpg"
             />
 
@@ -170,7 +193,7 @@ function DestinationCard({ name, sub, img, slug, className = "" }) {
     >
       <Image
         src={img}
-        alt={name}
+        alt=""
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover transition-transform duration-700 group-hover:scale-110"

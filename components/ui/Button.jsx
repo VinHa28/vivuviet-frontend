@@ -9,11 +9,17 @@ const sizes = {
 };
 
 const variants = {
-  default: "",
-  secondary: "",
+  default: "bg-primary",
+  secondary:
+    "bg-white border border-primary hover:bg-primary transition-colors duration-300",
 };
 
-const base = ` relative bg-primary  rounded-md text-[18px] flex items-center justify-center overflow-hidden`;
+const textColors = {
+  default: "text-white",
+  secondary: "text-primary group-hover:text-white transition-colors duration-300",
+};
+
+const base = ` relative rounded-md text-[18px] flex items-center justify-center overflow-hidden`;
 
 const borderHoverClasses = `opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300`;
 
@@ -22,7 +28,7 @@ const Button = React.forwardRef(
     {
       className,
       hoverable = true,
-      variant,
+      variant = "default",
       size = "sm",
       disabled,
       loading = false,
@@ -32,6 +38,8 @@ const Button = React.forwardRef(
     },
     ref,
   ) => {
+    const v = variants[variant] ? variant : "default";
+
     return (
       <button
         ref={ref}
@@ -39,32 +47,37 @@ const Button = React.forwardRef(
         disabled={disabled || loading}
         className={clsx(
           sizes[size],
-          variants[variant],
+          variants[v],
           base,
           "group",
           className,
           hoverable && "cursor-pointer",
-          isButton && "hover:opacity-90 font-light",
+          isButton && "font-light",
+          isButton && v === "default" && "hover:opacity-90",
           (disabled || loading) && "opacity-50 cursor-not-allowed",
         )}
       >
-        <div
-          className={`absolute -top-px -left-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}
-        ></div>
-        <div
-          className={`absolute -right-px -top-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}
-        ></div>
-        <div
-          className={`absolute -right-px -bottom-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}
-        ></div>
-        <div
-          className={`absolute -left-px -bottom-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}
-        ></div>
+        {v === "default" && (
+          <>
+            <div
+              className={`absolute -top-px -left-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}
+            ></div>
+            <div
+              className={`absolute -right-px -top-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}
+            ></div>
+            <div
+              className={`absolute -right-px -bottom-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}
+            ></div>
+            <div
+              className={`absolute -left-px -bottom-px w-3 h-3 border border-secondary ${hoverable ? borderHoverClasses : ""}`}
+            ></div>
+            <span
+              className={`absolute inset-1 border border-secondary pointer-events-none ${hoverable ? borderHoverClasses : ""}`}
+            />
+          </>
+        )}
         <span
-          className={`absolute inset-1 border border-secondary pointer-events-none ${hoverable ? borderHoverClasses : ""}`}
-        />
-        <span
-          className={`text-white ${isButton ? "" : "font-script-1 text-[32px]"}`}
+          className={`${textColors[v]} ${isButton ? "" : "font-script-1 text-[32px]"}`}
         >
           {children}
         </span>

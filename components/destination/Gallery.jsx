@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -53,10 +54,12 @@ export default function Gallery({ images }) {
                                 : 'col-span-1'
                             }`}
                     >
-                        <img
+                        <Image
                             src={img.image}
-                            alt={img.alt}
-                            className="absolute inset-0 w-full h-full object-cover block hover:scale-105 transition-transform duration-700"
+                            alt={img.alt || ''}
+                            fill
+                            sizes="(min-width: 768px) 25vw, 50vw"
+                            className="object-cover hover:scale-105 transition-transform duration-700"
                         />
                     </div>
                 ))}
@@ -92,11 +95,12 @@ export default function Gallery({ images }) {
                             }`}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <img
+                        <Image
                             src={images[selectedImageIndex].image}
-                            alt={images[selectedImageIndex].alt}
-                            className="max-w-full max-h-[85vh] object-contain shadow-2xl"
-                            role="img"
+                            alt={images[selectedImageIndex].alt || ''}
+                            fill
+                            sizes="(min-width: 1024px) 1024px, 90vw"
+                            className="object-contain shadow-2xl"
                         />
                     </div>
 

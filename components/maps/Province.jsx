@@ -11,6 +11,9 @@ export default function Province({
       d={province.pathSvg}
       fill={province.fill}
       fillOpacity={province.fillOpacity}
+      stroke="#5D5D5D"
+      strokeWidth="0.4"
+      strokeLinejoin="round"
       id={province.slug}
       data-name={province.name}
       className={`province ${province.active ? "active" : ""}`}

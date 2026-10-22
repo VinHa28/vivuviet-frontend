@@ -172,7 +172,7 @@ const ServiceSection = () => {
                 <div className="relative w-5 h-5">
                   <Image
                     src={tab.icon}
-                    alt={tab.label}
+                    alt=""
                     fill
                     className={`object-contain ${
                       activeTab !== tab.id
@@ -208,24 +208,24 @@ const ServiceSection = () => {
               <div className="h-8 w-px bg-gray-200"></div>
 
               {/* Date Input */}
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Bao giờ bạn đi?
-                </h3>
+                </span>
                 <input
                   type="date"
                   value={searchInputs.tours.date}
                   onChange={(e) => handleInputChange("date", e.target.value)}
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
-              </div>
+              </label>
               <div className="h-8 w-px bg-gray-200"></div>
 
               {/* Group Input */}
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Bạn đi cùng ai?
-                </h3>
+                </span>
                 <select
                   value={searchInputs.tours.group}
                   onChange={(e) => handleInputChange("group", e.target.value)}
@@ -237,14 +237,14 @@ const ServiceSection = () => {
                   <option value="couple">Đôi</option>
                   <option value="solo">Một mình</option>
                 </select>
-              </div>
+              </label>
               <div className="h-8 w-px bg-gray-200"></div>
 
               {/* Budget Input */}
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngân sách
-                </h3>
+                </span>
                 <select
                   value={searchInputs.tours.budget}
                   onChange={(e) => handleInputChange("budget", e.target.value)}
@@ -256,7 +256,7 @@ const ServiceSection = () => {
                   <option value="1m-3m">1M - 3M</option>
                   <option value="over-3m">Trên 3M</option>
                 </select>
-              </div>
+              </label>
             </>
           )}
 
@@ -270,22 +270,22 @@ const ServiceSection = () => {
                 options={provinces.filter((p) => p !== "All")}
               />
               <div className="h-8 w-px bg-gray-200"></div>
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày nhận
-                </h3>
+                </span>
                 <input
                   type="date"
                   value={searchInputs.hotels.checkIn}
                   onChange={(e) => handleInputChange("checkIn", e.target.value)}
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
-              </div>
+              </label>
               <div className="h-8 w-px bg-gray-200"></div>
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày trả
-                </h3>
+                </span>
                 <input
                   type="date"
                   value={searchInputs.hotels.checkOut}
@@ -294,7 +294,7 @@ const ServiceSection = () => {
                   }
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
-              </div>
+              </label>
             </>
           )}
 
@@ -316,17 +316,17 @@ const ServiceSection = () => {
                 options={provinces.filter((p) => p !== "All")}
               />
               <div className="h-8 w-px bg-gray-200"></div>
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày khởi hành
-                </h3>
+                </span>
                 <input
                   type="date"
                   value={searchInputs.transport.date}
                   onChange={(e) => handleInputChange("date", e.target.value)}
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
-              </div>
+              </label>
             </>
           )}
 
@@ -340,22 +340,22 @@ const ServiceSection = () => {
                 options={provinces.filter((p) => p !== "All")}
               />
               <div className="h-8 w-px bg-gray-200"></div>
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày tham quan
-                </h3>
+                </span>
                 <input
                   type="date"
                   value={searchInputs.culture.date}
                   onChange={(e) => handleInputChange("date", e.target.value)}
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
-              </div>
+              </label>
               <div className="h-8 w-px bg-gray-200"></div>
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Số lượng người
-                </h3>
+                </span>
                 <input
                   type="number"
                   min="1"
@@ -363,16 +363,16 @@ const ServiceSection = () => {
                   onChange={(e) => handleInputChange("count", e.target.value)}
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
-              </div>
+              </label>
             </>
           )}
 
           {activeTab === "activities" && (
             <>
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Loại hoạt động
-                </h3>
+                </span>
                 <select
                   value={searchInputs.activities.type}
                   onChange={(e) => handleInputChange("type", e.target.value)}
@@ -383,7 +383,7 @@ const ServiceSection = () => {
                   <option value="adventure">Mạo hiểm</option>
                   <option value="entertainment">Giải trí</option>
                 </select>
-              </div>
+              </label>
               <div className="h-8 w-px bg-gray-200"></div>
               <AutocompleteInput
                 label="Địa điểm"
@@ -393,25 +393,26 @@ const ServiceSection = () => {
                 options={provinces.filter((p) => p !== "All")}
               />
               <div className="h-8 w-px bg-gray-200"></div>
-              <div className="flex-1 px-4 py-3">
-                <h3 className="text-[14px] font-bold text-black whitespace-nowrap mb-1">
+              <label className="block flex-1 px-4 py-3">
+                <span className="block text-[14px] font-bold text-black whitespace-nowrap mb-1">
                   Ngày tham gia
-                </h3>
+                </span>
                 <input
                   type="date"
                   value={searchInputs.activities.date}
                   onChange={(e) => handleInputChange("date", e.target.value)}
                   className="text-[13px] text-gray-500 bg-transparent outline-none w-full"
                 />
-              </div>
+              </label>
             </>
           )}
 
           <button
             onClick={handleSearch}
+            aria-label="Tìm kiếm"
             className="cursor-pointer w-12 h-12 ml-2 bg-primary hover:bg-secondary text-white p-4 rounded-tl-[10px] rounded-br-[10px] rounded-bl-[5px] rounded-tr-[5px] transition-all shadow-md flex items-center justify-center"
           >
-            <Search size={24} strokeWidth={3} />
+            <Search size={24} strokeWidth={3} aria-hidden="true" />
           </button>
         </div>
       </div>

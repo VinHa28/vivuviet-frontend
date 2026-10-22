@@ -137,7 +137,7 @@ export default function Header() {
               ) : (
                 <>
                   <Image
-                    src={"/images/menu.svg"}
+                    src={"/icons/menu.svg"}
                     alt="Menu"
                     className="w-5 h-5"
                     width={20}

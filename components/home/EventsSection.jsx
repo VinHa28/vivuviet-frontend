@@ -153,7 +153,7 @@ const EventsSection = () => {
             ))}
           </div>
         ) : (
-          <div className="h-[400px] flex items-center justify-center bg-gray-100 text-gray-500 italic">
+          <div className="h-[400px] flex items-center justify-center bg-gray-100 text-gray-600 italic">
             Không có sự kiện nào nổi bật trong tháng này...
           </div>
         )}

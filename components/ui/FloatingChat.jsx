@@ -37,7 +37,7 @@ export default function FloatingChat() {
         className="w-12 h-12 rounded-full bg-[#a5190e] text-white flex items-center justify-center shadow-lg hover:scale-105 transition"
         title="Chat Zalo"
       >
-        <SiZalo size={22} />
+        <SiZalo size={22} aria-hidden="true" />
       </Link>
 
       {/* Facebook Messenger */}
@@ -47,7 +47,7 @@ export default function FloatingChat() {
         className="w-12 h-12 rounded-full bg-[#a5190e] text-white flex items-center justify-center shadow-lg hover:scale-105 transition"
         title="Chat Facebook"
       >
-        <FaFacebookMessenger size={22} />
+        <FaFacebookMessenger size={22} aria-hidden="true" />
       </Link>
 
       {/* Scroll to top */}

@@ -18,11 +18,11 @@ export default function ExploreSection() {
               <Button size="md" isButton={false} hoverable={false}>
                 Khám Phá Việt Nam
               </Button>
-              <h1 className="mt-5 text-[32px] text-text-primary w-120.5 leading-9 font-semibold">
+              <h2 className="mt-5 text-[32px] text-text-primary w-120.5 leading-9 font-semibold">
                 <span className="font-medium font-script-1 text-[48px] text-secondary">
                   {activeProvince.name}
                 </span>
-              </h1>
+              </h2>
               <p className="mt-2.5 text-[20px] font-light text-text-secondary w-133">
                 {activeProvince.shortDesc}
               </p>
