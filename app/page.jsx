@@ -1,10 +1,13 @@
-import VietnamMaps from "@/components/maps/VietnamMaps";
 import Button from "@/components/ui/Button";
 import Image from "next/image";
 import Link from "next/link";
 import ServiceSection from "@/components/home/ServiceSection";
 import EventsSection from "@/components/home/EventsSection";
 import ExploreSection from "@/components/home/ExploreSection";
+
+export const metadata = {
+  alternates: { canonical: "/" },
+};
 
 export default function Home() {
   return (
@@ -73,7 +76,7 @@ export default function Home() {
                 src="/icons/plane_vector.svg"
                 alt="plane icon"
                 fill
-                className="object-contain" 
+                className="object-contain"
               />
             </div>
           </div>

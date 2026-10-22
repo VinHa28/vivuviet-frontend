@@ -37,9 +37,6 @@ export const metadata = {
   description: "Khám phá vẻ đẹp Việt Nam qua từng hành trình. VivuViet cung cấp thông tin du lịch, đặt tour và trải nghiệm văn hóa bản địa đặc sắc.",
   keywords: ["du lịch Việt Nam", "văn hóa Việt Nam", "đặt tour du lịch", "VivuViet"],
   metadataBase: new URL("https://vivuviet.info.vn"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: "VivuViet - Your Journey, Your Story",
     description: "Nền tảng du lịch và trải nghiệm văn hóa Việt Nam",

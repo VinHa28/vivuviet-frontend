@@ -1,10 +1,11 @@
 import OffersSection from "@/components/offers/OffersSection";
 
 export const metadata = {
-  title: "Ưu đãi du lịch - VivuViet",
-  description: "Khám phá các ưu đãi du lịch tuyệt vời với giảm giá lên đến 50%",
+  title: "Ưu đãi du lịch",
+  description:
+    "Khám phá các ưu đãi du lịch tuyệt vời với giảm giá lên đến 50%",
+  alternates: { canonical: "/offers" },
 };
-
 export default async function OffersPage({ searchParams }) {
   const params = await searchParams;
   // Parse URL search params
