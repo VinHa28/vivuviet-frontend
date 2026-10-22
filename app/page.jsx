@@ -164,7 +164,7 @@ export default function Home() {
             <DestinationCard
               name="Phú Quốc"
               sub="An Giang"
-              slug="phu-quoc"
+              slug="an-giang"
               img="/images/phu_quoc.jpg"
             />
 

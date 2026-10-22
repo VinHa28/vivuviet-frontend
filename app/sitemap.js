@@ -11,7 +11,6 @@ const fallbackSlugs = [
     "da-nang",
     "ha-noi",
     "ninh-binh",
-    "phu-quoc",
     "hue",
 ];
 
