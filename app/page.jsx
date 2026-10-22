@@ -193,7 +193,7 @@ function DestinationCard({ name, sub, img, slug, className = "" }) {
     >
       <Image
         src={img}
-        alt={name}
+        alt=""
         fill
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         className="object-cover transition-transform duration-700 group-hover:scale-110"

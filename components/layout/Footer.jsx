@@ -35,6 +35,7 @@ export default function Footer() {
               <Link
                 href={"https://www.facebook.com/profile.php?id=61586817304762"}
                 target="_blank"
+                aria-label="Facebook VivuViet"
               >
                 <Facebook size={20} fill="currentColor" />
               </Link>
@@ -46,9 +47,9 @@ export default function Footer() {
         </div>
 
         <div>
-          <h4 className="text-text-primary font-medium font-primary text-[20px] mb-6">
+          <h2 className="text-text-primary font-medium font-primary text-[20px] mb-6">
             Khám phá
-          </h4>
+          </h2>
           <ul className="flex flex-col gap-4 text-text-secondary font-primary">
             <li>
               <Link href="/" className="hover:text-primary transition-colors">
@@ -76,9 +77,9 @@ export default function Footer() {
 
         {/* Cột 3: Quick Links */}
         <div>
-          <h4 className="text-text-primary font-medium font-primary text-[20px] mb-6">
+          <h2 className="text-text-primary font-medium font-primary text-[20px] mb-6">
             Liên kết nhanh
-          </h4>
+          </h2>
           <ul className="flex flex-col gap-4 text-text-secondary font-primary">
             <li>
               <button
@@ -94,9 +95,9 @@ export default function Footer() {
 
         {/* Cột 4: Contact */}
         <div>
-          <h4 className="text-text-primary font-medium font-primary text-[20px] mb-6">
+          <h2 className="text-text-primary font-medium font-primary text-[20px] mb-6">
             Liên hệ
-          </h4>
+          </h2>
           <ul className="flex flex-col gap-4 text-text-secondary font-primary">
             <li className="flex items-center gap-3">
               <MapPin size={20} className="text-text-primary" />
