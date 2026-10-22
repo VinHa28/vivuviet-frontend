@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
   const plainText = stripHtml(post?.content).substring(0, 160).trim();
   const description =
     plainText || `Khám phá những trải nghiệm tuyệt vời tại ${title}`;
-  const imageUrl = post?.banner?.image || "/default-og-image.jpg";
+  const imageUrl = post?.banner?.image || "/og-image.jpg";
 
   return {
     title,

@@ -44,6 +44,14 @@ export const metadata = {
     siteName: "VivuViet",
     locale: "vi_VN",
     type: "website",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "VivuViet - Nền tảng du lịch và trải nghiệm văn hóa Việt Nam",
+      },
+    ],
   },
   icons: {
     icon: "/favicon.png",
