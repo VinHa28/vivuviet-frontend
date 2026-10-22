@@ -4,10 +4,30 @@ import Link from "next/link";
 import ServiceSection from "@/components/home/ServiceSection";
 import EventsSection from "@/components/home/EventsSection";
 import ExploreSection from "@/components/home/ExploreSection";
+import JsonLd from "@/components/seo/JsonLd";
 
 export const metadata = {
   alternates: { canonical: "/" },
 };
+
+const siteJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "VivuViet",
+    url: "https://vivuviet.info.vn",
+    description:
+      "Nền tảng du lịch và trải nghiệm văn hóa Việt Nam: điểm đến, ưu đãi và sự kiện.",
+    sameAs: ["https://www.facebook.com/profile.php?id=61586817304762"],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "VivuViet",
+    url: "https://vivuviet.info.vn",
+    inLanguage: "vi",
+  },
+]
 
 export default function Home() {
   return (

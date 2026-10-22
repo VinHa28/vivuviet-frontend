@@ -2,6 +2,7 @@ import { cache } from "react";
 import { notFound } from "next/navigation";
 import DestinationClient from "@/components/pages/DestinationClient";
 import { getDestinationServer } from "@/services/postService";
+import JsonLd from "@/components/seo/JsonLd";
 
 const getDestination = cache(getDestinationServer);
 
@@ -42,7 +43,45 @@ export default async function Page({ params }) {
 
   if (!destination) notFound();
 
-  return <DestinationClient destination={destination} />;
+  const url = `https://vivuviet.info.vn/destinations/${slug}`;
+  const post = destination.posts?.[0];
+
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Trang chủ",
+          item: "https://vivuviet.info.vn",
+        },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: destination.title,
+          item: url,
+        },
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "TouristDestination",
+      name: destination.title,
+      url,
+      description: stripHtml(post?.content).substring(0, 160).trim() || undefined,
+      image: post?.banner?.image || undefined,
+      inLanguage: "vi",
+    },
+  ];
+
+  return (
+    <>
+      <JsonLd data={jsonLd} />
+      <DestinationClient destination={destination} />
+    </>
+  );
 }
 
 function stripHtml(html) {
